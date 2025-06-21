@@ -5,9 +5,7 @@
   },
 
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,readonly",
-    "source=node-modules-cache,target=/workspace/node_modules,type=volume",
-    "source=npm-cache,target=/home/node/.npm,type=volume"
+    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,readonly,consistency=cached"
   ],
 
   "customizations": {
@@ -19,7 +17,7 @@
         "ms-vscode.vscode-json",
         "formulahendry.auto-rename-tag",
         "christian-kohler.path-intellisense",
-        "dbaeumer.vscode-eslint",
+        "ms-vscode.vscode-eslint",
         "ms-playwright.playwright"
       ],
       "settings": {
@@ -37,12 +35,6 @@
     }
   },
 
-  "features": {
-    "ghcr.io/devcontainers/features/github-cli:1": {}
-  },
-
-  "runArgs": ["--memory=4g", "--cpus=2"],
-
   "forwardPorts": [5173, 8787],
   "portsAttributes": {
     "5173": {
@@ -55,11 +47,7 @@
     }
   },
 
-  "postCreateCommand": [
-    "npm install",
-    "chmod 600 ~/.ssh/* 2>/dev/null || true",
-    "cp ${localEnv:HOME}/.gitconfig /home/node/.gitconfig 2>/dev/null || true"
-  ],
+  "postCreateCommand": "npm install && chmod 600 ~/.ssh/* 2>/dev/null || true && if [ -f ${localEnv:HOME}/.gitconfig ]; then cp ${localEnv:HOME}/.gitconfig /home/node/.gitconfig; fi",
   "postStartCommand": "npm run cf-typegen",
 
   "remoteUser": "node",
