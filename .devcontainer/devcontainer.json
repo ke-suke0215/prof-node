@@ -1,14 +1,13 @@
 {
-  "name": "ProfNode Development",
+  "name": "ProfNodeDevelopment",
   "build": {
     "dockerfile": "Dockerfile"
   },
-  
+
   "mounts": [
-    "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached",
-    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,readonly,consistency=cached"
   ],
-  
+
   "customizations": {
     "vscode": {
       "extensions": [
@@ -35,7 +34,7 @@
       }
     }
   },
-  
+
   "forwardPorts": [5173, 8787],
   "portsAttributes": {
     "5173": {
@@ -43,14 +42,14 @@
       "onAutoForward": "notify"
     },
     "8787": {
-      "label": "Wrangler Dev Server", 
+      "label": "Wrangler Dev Server",
       "onAutoForward": "notify"
     }
   },
-  
-  "postCreateCommand": "npm install && chmod 600 ~/.ssh/* 2>/dev/null || true",
+
+  "postCreateCommand": "npm install && chmod 600 ~/.ssh/* 2>/dev/null || true && if [ -f ${localEnv:HOME}/.gitconfig ]; then cp ${localEnv:HOME}/.gitconfig /home/node/.gitconfig; fi",
   "postStartCommand": "npm run cf-typegen",
-  
+
   "remoteUser": "node",
   "updateContentCommand": "npm install",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",

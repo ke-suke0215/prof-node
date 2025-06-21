@@ -124,6 +124,7 @@ Dev Container で git push 等を使用するための設定済み：
 - `workers/app.ts`が Cloudflare Workers 用のエントリーポイント
 - **認証が必要な画面への未ログイン時のアクセスは `/login` にリダイレクト**
 - **ユーザー識別子には nano ID を使用**（公開 URL: `/{nanoid}` 形式）
+- ユニットテストをカバレッジ高く実装すること
 
 ## UI/UX デザイン参考
 
