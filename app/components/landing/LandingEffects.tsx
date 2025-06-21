@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 
 export function LandingEffects() {
   useEffect(() => {
+    // Client-side only code
+    if (typeof window === 'undefined') return;
+
     const wrapper = document.getElementById('aurora-wrapper');
     
     const handleMouseMove = (e: MouseEvent) => {

@@ -20,6 +20,7 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   return (
     <div id="aurora-wrapper" className="relative overflow-x-hidden">
+      <LandingEffects />
       <Header />
       <main>
         <Hero />

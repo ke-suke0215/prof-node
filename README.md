@@ -1,79 +1,88 @@
-# Welcome to React Router!
+# ProfNode
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A web business card service for engineers. Share your profile, social links, and portfolio with a simple URL.
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- Digital business card with customizable profile
+- Social media link integration (GitHub, Twitter, LinkedIn, etc.)
+- Mobile-first responsive design
+- Built with React Router v7 + Cloudflare Workers
 
-## Getting Started
+## Development
+
+### Prerequisites
+
+- Node.js 20+
+- npm
 
 ### Installation
-
-Install the dependencies:
 
 ```bash
 npm install
 ```
 
-### Development
-
-Start the development server with HMR:
+### Development Server
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+Visit `http://localhost:5173` to view the application.
 
-## Previewing the Production Build
-
-Preview the production build locally:
-
-```bash
-npm run preview
-```
-
-## Building for Production
-
-Create a production build:
+### Building
 
 ```bash
 npm run build
 ```
 
+### Type Checking
+
+```bash
+npm run typecheck
+```
+
+## Code Quality
+
+### Linting
+
+Check for linting errors:
+```bash
+npm run lint
+```
+
+Fix linting errors automatically:
+```bash
+npm run lint:fix
+```
+
+### Formatting
+
+Check code formatting:
+```bash
+npm run format:check
+```
+
+Fix code formatting:
+```bash
+npm run format
+```
+
 ## Deployment
 
-Deployment is done using the Wrangler CLI.
-
-To build and deploy directly to production:
-
-```sh
+Deploy to Cloudflare Workers:
+```bash
 npm run deploy
 ```
 
-To deploy a preview URL:
+## Tech Stack
 
-```sh
-npx wrangler versions upload
-```
+- **Frontend**: React 19, React Router v7
+- **Styling**: TailwindCSS
+- **Runtime**: Cloudflare Workers
+- **Build Tool**: Vite
+- **Language**: TypeScript
 
-You can then promote a version to production after verification or roll it out progressively.
+## Development Environment
 
-```sh
-npx wrangler versions deploy
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+This project uses Dev Containers for consistent development environment. Open in VS Code and select "Reopen in Container" for the best experience.

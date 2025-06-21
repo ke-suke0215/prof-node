@@ -27,6 +27,10 @@ export default [
         ExecutionContext: 'readonly',
         ExportedHandler: 'readonly',
         React: 'readonly',
+        document: 'readonly',
+        MouseEvent: 'readonly',
+        IntersectionObserver: 'readonly',
+        window: 'readonly',
       },
     },
     plugins: {

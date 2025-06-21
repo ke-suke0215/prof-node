@@ -83,3 +83,13 @@ body {
 .hero-card:hover {
   transform: translateY(-10px) rotate(0deg) !important;
 }
+
+/* Hero card positioning - Desktop override for mobile-centered cards */
+@media (min-width: 768px) {
+  .hero-card:first-child {
+    left: 10% !important;
+  }
+  .hero-card:nth-child(2) {
+    left: 35% !important;
+  }
+}
