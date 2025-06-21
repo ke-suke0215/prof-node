@@ -1,17 +1,32 @@
-import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import type { Route } from './+types/home';
+import { Header } from '../components/landing/Header';
+import { Hero } from '../components/landing/Hero';
+import { Features } from '../components/landing/Features';
+import { CTA } from '../components/landing/CTA';
+import { Footer } from '../components/landing/Footer';
+import { LandingEffects } from '../components/landing/LandingEffects';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: 'ProfNode - 新しい出会いのカタチ' },
+    {
+      name: 'description',
+      content:
+        'ProfNodeは、あなたのプロフィールやSNS、ポートフォリオを一つにまとめ、簡単に共有できるデジタル名刺サービスです。',
+    },
   ];
 }
 
-export function loader({ context }: Route.LoaderArgs) {
-  return { message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE };
-}
-
-export default function Home({ loaderData }: Route.ComponentProps) {
-  return <Welcome message={loaderData.message} />;
+export default function Home() {
+  return (
+    <div id="aurora-wrapper" className="relative overflow-x-hidden">
+      <Header />
+      <main>
+        <Hero />
+        <Features />
+        <CTA />
+      </main>
+      <Footer />
+    </div>
+  );
 }

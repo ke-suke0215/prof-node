@@ -1,8 +1,9 @@
-@import "tailwindcss" source(".");
+@import 'tailwindcss' source('.');
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    'Inter', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 html,
@@ -12,4 +13,73 @@ body {
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+}
+
+/* Apply animated background to the body */
+body {
+  background: linear-gradient(-45deg, #f0f9ff, #e0f2fe, #f0f9ff, #e0e7ff);
+  background-size: 400% 400%;
+  animation: gradient-animation 20s ease infinite;
+  color: #1f2937;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+}
+
+/* Aurora Effect: A pseudo-element that follows the mouse */
+#aurora-wrapper::before {
+  content: '';
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    1000px circle at var(--mouse-x) var(--mouse-y),
+    rgba(59, 130, 246, 0.1),
+    transparent 40%
+  );
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+
+/* Animated background gradient */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glassmorphism for the header */
+.glass-header {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Animation for elements fading in on scroll */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero card animation */
+.hero-card {
+  transition: transform 0.3s ease-out;
+}
+.hero-card:hover {
+  transform: translateY(-10px) rotate(0deg) !important;
 }
