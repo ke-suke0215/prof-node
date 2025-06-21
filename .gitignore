@@ -11,3 +11,7 @@
 .wrangler
 .dev.vars*
 
+# Other
+.vscode/
+.idea/
+# .claude/
