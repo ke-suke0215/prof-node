@@ -6,7 +6,7 @@ export function LandingEffects() {
     if (typeof window === 'undefined') return;
 
     const wrapper = document.getElementById('aurora-wrapper');
-    
+
     const handleMouseMove = (e: MouseEvent) => {
       if (wrapper) {
         const x = e.clientX;

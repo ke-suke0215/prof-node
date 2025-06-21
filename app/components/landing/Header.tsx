@@ -2,7 +2,9 @@ export function Header() {
   return (
     <header className="glass-header sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
-        <div className="font-bold text-lg sm:text-xl text-gray-800">ProfNode</div>
+        <div className="font-bold text-lg sm:text-xl text-gray-800">
+          ProfNode
+        </div>
         <div className="flex items-center space-x-2 sm:space-x-4">
           <button className="text-gray-600 hover:text-blue-600 bg-transparent border-none cursor-pointer text-sm sm:text-base px-2 sm:px-0">
             ログイン
