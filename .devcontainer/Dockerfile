@@ -35,8 +35,7 @@ USER $USERNAME
 WORKDIR /workspace
 
 # Set up shell aliases for better development experience
-RUN echo 'alias k="kubectl"' >> ~/.bashrc \
-    && echo 'alias g="git"' >> ~/.bashrc \
+RUN echo 'alias g="git"' >> ~/.bashrc \
     && echo 'alias gs="git status"' >> ~/.bashrc \
     && echo 'alias d="docker"' >> ~/.bashrc \
     && echo 'alias dc="docker compose"' >> ~/.bashrc \
