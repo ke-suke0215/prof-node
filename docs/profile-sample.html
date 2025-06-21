@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Business Card - Taro Yamada</title>
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Apply the custom font to the body */
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Aurora Effect: A pseudo-element that follows the mouse */
+      #profile-card-wrapper::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          800px circle at var(--mouse-x) var(--mouse-y),
+          rgba(59, 130, 246, 0.15),
+          /* Soft blue glow */ transparent 40%
+        );
+        z-index: 0;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+      }
+
+      #profile-card-wrapper:hover::before {
+        opacity: 1;
+      }
+
+      /* The main card with a light glassmorphism effect */
+      #profile-card {
+        background: rgba(
+          255,
+          255,
+          255,
+          0.65
+        ); /* Semi-transparent white background */
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px); /* For Safari */
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Animated background gradient with light colors */
+      @keyframes gradient-animation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .animated-gradient {
+        background: linear-gradient(-45deg, #f0f9ff, #e0f2fe, #f0f9ff, #e0e7ff);
+        background-size: 400% 400%;
+        animation: gradient-animation 20s ease infinite;
+      }
+
+      /* Simplified style for the link icons */
+      .social-icon {
+        transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+      }
+      .social-icon:hover {
+        transform: translateY(-2px) scale(1.1);
+      }
+    </style>
+  </head>
+  <body class="animated-gradient text-gray-800 antialiased">
+    <div
+      id="profile-card-wrapper"
+      class="relative min-h-screen w-full flex items-center justify-center p-4"
+    >
+      <!-- Main Profile Card -->
+      <div
+        id="profile-card"
+        class="relative w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-xl transition-all duration-300"
+      >
+        <div class="p-8 md:p-10">
+          <!-- Header: Name, Title, Company -->
+          <div class="text-center mb-8 pt-4">
+            <h1 class="text-4xl font-bold text-gray-900 tracking-tight">
+              Taro Yamada
+            </h1>
+            <p class="text-lg text-gray-600 mt-2">Frontend Engineer</p>
+            <p class="text-md text-gray-500">@ Tech Innovate Inc.</p>
+          </div>
+
+          <!-- Social Links -->
+          <div class="flex justify-center items-center space-x-6 mb-8">
+            <!-- GitHub -->
+            <a
+              href="#"
+              class="text-gray-500 hover:text-gray-900 social-icon"
+              aria-label="GitHub Profile"
+              title="GitHub"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6.1a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.7 2.7 5.8 5.5 6.1-.6.5-1 1.4-1 2.8v3.5"
+                ></path>
+              </svg>
+            </a>
+            <!-- X (Twitter) -->
+            <a
+              href="#"
+              class="text-gray-500 hover:text-gray-900 social-icon"
+              aria-label="X Profile"
+              title="X (Twitter)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                />
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a
+              href="#"
+              class="text-gray-500 hover:text-blue-600 social-icon"
+              aria-label="LinkedIn Profile"
+              title="LinkedIn"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                ></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <!-- Qiita -->
+            <a
+              href="#"
+              class="text-gray-500 hover:text-green-600 social-icon"
+              aria-label="Qiita Profile"
+              title="Qiita"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M5.11 3.003h13.78v4.133h-4.133v9.643H9.243v-9.643H5.11V3.003zm9.644 13.777v4.133H5.11v-4.133h9.644z"
+                />
+              </svg>
+            </a>
+            <!-- Zenn -->
+            <a
+              href="#"
+              class="text-gray-500 hover:text-blue-500 social-icon"
+              aria-label="Zenn Profile"
+              title="Zenn"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                viewBox="0 0 256 256"
+                fill="currentColor"
+              >
+                <path
+                  d="M111.99,32.05a8,8,0,0,0-8.23,6.23l-32,128.1a8,8,0,1,0,15.74,3.92L119.34,64h63.49a8,8,0,0,0,7.9-6.69l16.17-64.66a8,8,0,0,0-7.9-9.31H176a8,8,0,0,0,0,16h11.23l-3.32,13.29h-64Zm40,112.08-32,64.05a8,8,0,0,0,14.26,7.14L157.34,176h35.49a8,8,0,0,0,0-16H163.7l22.63-45.26a8,8,0,0,0-14.26-7.14Z"
+                />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Email & Contact -->
+          <div class="mb-8 px-4">
+            <div
+              class="flex items-center bg-gray-100/70 border border-gray-200/80 rounded-lg p-3"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-gray-400 mr-3"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                ></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span id="email-text" class="text-gray-700 text-sm"
+                >taro.yamada@example.com</span
+              >
+              <button
+                onclick="copyEmail()"
+                class="ml-auto text-gray-400 hover:text-gray-800 transition-colors"
+                aria-label="Copy email address"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Other Links Section -->
+          <div>
+            <h2
+              class="text-sm font-semibold text-gray-400 uppercase tracking-wider text-center mb-4"
+            >
+              Other Links
+            </h2>
+            <div class="space-y-3 px-4">
+              <!-- Other Link Item 1 -->
+              <a
+                href="#"
+                class="block bg-white/60 border border-gray-200/80 rounded-lg p-4 hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200"
+              >
+                <p class="font-semibold text-gray-800">My Portfolio</p>
+                <p class="text-sm text-gray-500 truncate">
+                  https://portfolio.example.com
+                </p>
+              </a>
+              <!-- Other Link Item 2 -->
+              <a
+                href="#"
+                class="block bg-white/60 border border-gray-200/80 rounded-lg p-4 hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200"
+              >
+                <p class="font-semibold text-gray-800">My Blog</p>
+                <p class="text-sm text-gray-500 truncate">
+                  https://blog.example.com
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Notification for copy action -->
+        <div
+          id="copy-notification"
+          class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-sm py-2 px-4 rounded-full opacity-0 translate-y-4 transition-all duration-300"
+        >
+          メールアドレスをコピーしました！
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // JavaScript for the aurora shine effect
+      const wrapper = document.getElementById("profile-card-wrapper");
+      wrapper.addEventListener("mousemove", (e) => {
+        const rect = wrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        wrapper.style.setProperty("--mouse-x", `${x}px`);
+        wrapper.style.setProperty("--mouse-y", `${y}px`);
+      });
+
+      // JavaScript for copying email to clipboard
+      function copyEmail() {
+        const emailText = document.getElementById("email-text").innerText;
+        const tempInput = document.createElement("input");
+        document.body.appendChild(tempInput);
+        tempInput.value = emailText;
+        tempInput.select();
+
+        try {
+          // Use execCommand as a fallback, more compatible in iframe environments
+          document.execCommand("copy");
+          showNotification();
+        } catch (err) {
+          console.error("Failed to copy email: ", err);
+        }
+
+        document.body.removeChild(tempInput);
+      }
+
+      // Show a notification when text is copied
+      function showNotification() {
+        const notification = document.getElementById("copy-notification");
+        notification.classList.remove("opacity-0", "translate-y-4");
+        notification.classList.add("opacity-100", "translate-y-0");
+        setTimeout(() => {
+          notification.classList.remove("opacity-100", "translate-y-0");
+          notification.classList.add("opacity-0", "translate-y-4");
+        }, 2000);
+      }
+
+      // Add a subtle fade-in animation on load for the main card
+      window.addEventListener("load", () => {
+        const card = document.getElementById("profile-card");
+        card.style.transition = "opacity 1s ease, transform 0.8s ease";
+        card.style.opacity = "0";
+        card.style.transform = "translateY(20px)";
+
+        setTimeout(() => {
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0)";
+        }, 100);
+      });
+    </script>
+  </body>
+</html>

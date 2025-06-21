@@ -1,0 +1,41 @@
+📦 web-business-card/
+├── 📂 app/                              # React Router v7 アプリケーション
+│   ├── 📜 routes.ts                     # ルート設定（Configuration-based）
+│   ├── 📜 root.tsx                      # ルートコンポーネント
+│   ├── 📂 routes/                       # ルートモジュール
+│   │   ├── 📂 auth/                    # 認証関連ルート
+│   │   ├── 📂 dashboard/               # ダッシュボード（認証必須）
+│   │   └── 📂 api/                     # API エンドポイント
+│   ├── 📂 components/                   # 再利用可能UIコンポーネント
+│   │   ├── 📂 ui/                      # 基本UIコンポーネント
+│   │   ├── 📂 forms/                   # フォーム専用コンポーネント
+│   │   ├── 📂 business-card/           # 名刺表示コンポーネント
+│   │   └── 📂 layout/                  # レイアウト関連
+│   └── 📂 hooks/                       # カスタムフック
+├── 📂 lib/                             # 核となるライブラリコード
+│   ├── 📂 auth/                        # 認証関連
+│   ├── 📂 db/                          # データベース関連
+│   │   ├── 📂 schema/                  # Drizzleスキーマ定義
+│   │   ├── 📂 queries/                 # データベースクエリ
+│   │   ├── 📂 mutations/               # データベース操作
+│   │   └── 📜 client.ts                # データベースクライアント
+│   ├── 📂 schemas/                     # Zodスキーマ定義
+│   │   ├── 📂 api/                     # API用スキーマ
+│   │   ├── 📂 forms/                   # フォーム用スキーマ
+│   ├── 📂 types/                       # TypeScript型定義
+│   ├── 📂 services/                    # ビジネスロジック
+│   ├── 📂 utils/                       # ユーティリティ関数
+│   └── 📂 config/                      # 設定ファイル
+├── 📂 migrations/                      # Drizzle移行ファイル
+├── 📂 public/                          # 静的ファイル
+│   ├── 📂 templates/                   # 名刺テンプレート画像
+│   ├── 📂 icons/                       # アイコンファイル
+├── 📂 scripts/                         # 開発・デプロイスクリプト
+│   ├── 📜 generate-types.ts
+│   ├── 📜 migrate.ts
+│   └── 📜 seed-templates.ts           # テンプレートデータシード
+├── 📜 .env.local                       # ローカル環境変数
+├── 📜 drizzle.config.ts
+├── 📜 react-router.config.ts
+├── 📜 wrangler.jsonc                   # Cloudflare Workers設定
+└── 📜 package.json
