@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     vim \
     nano \
+    procps \
     && rm -rf /var/lib/apt/lists/*
 
 # Install GitHub CLI
@@ -27,13 +28,20 @@ RUN groupmod --gid $USER_GID $USERNAME \
     && chown -R $USER_UID:$USER_GID /home/$USERNAME
 
 # Install global npm packages that might be useful for development
-RUN npm install -g wrangler
+RUN npm install -g wrangler @anthropic-ai/claude-code
 
 USER $USERNAME
 
 WORKDIR /workspace
 
-# Set up shell for better development experience
-RUN echo 'alias ll="ls -alF"' >> ~/.bashrc \
+# Set up shell aliases for better development experience
+RUN echo 'alias k="kubectl"' >> ~/.bashrc \
+    && echo 'alias g="git"' >> ~/.bashrc \
+    && echo 'alias gs="git status"' >> ~/.bashrc \
+    && echo 'alias d="docker"' >> ~/.bashrc \
+    && echo 'alias dc="docker compose"' >> ~/.bashrc \
+    && echo 'alias br="bin/rails"' >> ~/.bashrc \
+    && echo 'alias ll="ls -la"' >> ~/.bashrc \
+    && echo 'alias t="terraform"' >> ~/.bashrc \
     && echo 'alias la="ls -A"' >> ~/.bashrc \
     && echo 'alias l="ls -CF"' >> ~/.bashrc

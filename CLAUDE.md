@@ -4,54 +4,60 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## プロジェクト概要
 
-**ProfNode** - エンジニア向けWeb名刺サービス
+**ProfNode** - エンジニア向け Web 名刺サービス
 
-イベント等で名刺の代わりにURLを共有して自分のプロフィールを相手に伝えられる「web名刺」のアプリケーションです。主なターゲットはソフトウェアエンジニアで、無料で提供されます。
+イベント等で名刺の代わりに URL を共有して自分のプロフィールを相手に伝えられる「web 名刺」のアプリケーションです。主なターゲットはソフトウェアエンジニアで、無料で提供されます。
 
 ## 機能要件（詳細は ./docs/web_business_card_requirements.md を参照）
 
-### MVP (Must機能)
-- **基本レイアウト**: スマホファースト、PC表示対応
-- **ユーザー認証**: Googleログイン優先、パスワード認証補完
-- **プロフィール機能**: 名前、職種、所属会社、メールアドレス
-- **関連リンク登録**: GitHub、Twitter、LinkedIn、Qiita、Zenn、その他URL
-- **公開プロフィール**: `/{nanoid}` 形式のURL、誰でも閲覧可能
+### MVP (Must 機能)
 
-### Phase 2 (Better機能)
+- **基本レイアウト**: スマホファースト、PC 表示対応
+- **ユーザー認証**: Google ログイン優先、パスワード認証補完
+- **プロフィール機能**: 名前、職種、所属会社、メールアドレス
+- **関連リンク登録**: GitHub、Twitter、LinkedIn、Qiita、Zenn、その他 URL
+- **公開プロフィール**: `/{nanoid}` 形式の URL、誰でも閲覧可能
+
+### Phase 2 (Better 機能)
+
 - プロフィール画像登録
-- QRコード生成・表示
+- QR コード生成・表示
 - プライバシーポリシー・利用規約
 
 ### 画面構成
-| パス | 画面名 | 認証要否 |
-|------|--------|----------|
-| `/` | ランディングページ | 不要 |
-| `/login` | ログイン画面 | 不要 |
-| `/register` | ユーザー登録 | 不要 |
-| `/dashboard` | マイページ | 必要 |
-| `/dashboard/edit` | プロフィール編集 | 必要 |
-| `/{nanoid}` | 公開プロフィール | 不要 |
+
+| パス              | 画面名             | 認証要否 |
+| ----------------- | ------------------ | -------- |
+| `/`               | ランディングページ | 不要     |
+| `/login`          | ログイン画面       | 不要     |
+| `/register`       | ユーザー登録       | 不要     |
+| `/dashboard`      | マイページ         | 必要     |
+| `/dashboard/edit` | プロフィール編集   | 必要     |
+| `/{nanoid}`       | 公開プロフィール   | 不要     |
 
 ## 開発環境
 
 ### Dev Container
-プロジェクトは `.devcontainer/devcontainer.json` でDev Container設定済み。VS Codeで「Reopen in Container」を実行すると、Node.js 20 + 必要な拡張機能がインストールされた開発環境が起動します。
+
+プロジェクトは `.devcontainer/devcontainer.json` で Dev Container 設定済み。VS Code で「Reopen in Container」を実行すると、Node.js 20 + 必要な拡張機能がインストールされた開発環境が起動します。
 
 - **ポート転送**: 5173 (Vite), 8787 (Wrangler)
 - **自動セットアップ**: `npm install` と `npm run cf-typegen` が自動実行
-- **推奨拡張機能**: TypeScript, TailwindCSS, Prettier, ESLint等
+- **推奨拡張機能**: TypeScript, TailwindCSS, Prettier, ESLint 等
 
-### Git設定
-Dev Containerでgit push等を使用するための設定済み：
+### Git 設定
 
-- **Git設定ファイル**: ホストの `~/.gitconfig` をコンテナ内にマウント
-- **SSH鍵**: ホストの `~/.ssh` ディレクトリをコンテナ内にマウント
+Dev Container で git push 等を使用するための設定済み：
+
+- **Git 設定ファイル**: ホストの `~/.gitconfig` をコンテナ内にマウント
+- **SSH 鍵**: ホストの `~/.ssh` ディレクトリをコンテナ内にマウント
 - **GitHub CLI**: `gh` コマンドが利用可能
 
 **初回セットアップ手順**:
-1. ホストマシンでGitとSSH鍵を設定済みであることを確認
-2. Dev Containerを起動
-3. 必要に応じて `gh auth login` でGitHub認証を実行
+
+1. ホストマシンで Git と SSH 鍵を設定済みであることを確認
+2. Dev Container を起動
+3. 必要に応じて `gh auth login` で GitHub 認証を実行
 
 ## 開発コマンド
 
@@ -94,8 +100,8 @@ Dev Containerでgit push等を使用するための設定済み：
 - `public/` - 静的アセット
 - `docs/` - プロジェクト関連ドキュメント
   - `web_business_card_requirements.md` - プロジェクト要件定義書
-  - `landing-page-sample.html` - ランディングページのUIサンプル
-  - `profile-sample.html` - プロフィールページのUIサンプル
+  - `landing-page-sample.html` - ランディングページの UI サンプル
+  - `profile-sample.html` - プロフィールページの UI サンプル
 
 ### 重要な設定ファイル
 
@@ -117,9 +123,13 @@ Dev Containerでgit push等を使用するための設定済み：
 - 開発時は localhost:5173 で実行されるが、実際のデプロイ先は Cloudflare Workers
 - `workers/app.ts`が Cloudflare Workers 用のエントリーポイント
 - **認証が必要な画面への未ログイン時のアクセスは `/login` にリダイレクト**
-- **ユーザー識別子にはnano IDを使用**（公開URL: `/{nanoid}` 形式）
+- **ユーザー識別子には nano ID を使用**（公開 URL: `/{nanoid}` 形式）
 
-## UI/UXデザイン参考
+## UI/UX デザイン参考
 
-- `docs/landing-page-sample.html` - ProfNodeランディングページのデザインサンプル（モダンなグラデーション、グラスモーフィズム効果）
-- `docs/profile-sample.html` - Web名刺プロフィールページのデザインサンプル（オーロラエフェクト、ソーシャルリンク）
+- `docs/landing-page-sample.html` - ProfNode ランディングページのデザインサンプル（モダンなグラデーション、グラスモーフィズム効果）
+- `docs/profile-sample.html` - Web 名刺プロフィールページのデザインサンプル（オーロラエフェクト、ソーシャルリンク）
+
+## Other
+
+- --dangerously-skip-permissions で起動されている場合は、タスクの完了時に通知音を鳴らすこと

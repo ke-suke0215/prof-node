@@ -4,6 +4,11 @@
     "dockerfile": "Dockerfile"
   },
   
+  "mounts": [
+    "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+  ],
+  
   "customizations": {
     "vscode": {
       "extensions": [
@@ -43,7 +48,7 @@
     }
   },
   
-  "postCreateCommand": "npm install",
+  "postCreateCommand": "npm install && chmod 600 ~/.ssh/* 2>/dev/null || true",
   "postStartCommand": "npm run cf-typegen",
   
   "remoteUser": "node",
