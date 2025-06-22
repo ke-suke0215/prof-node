@@ -9,6 +9,10 @@
     "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig-host,type=bind,readonly,consistency=cached"
   ],
 
+  "containerEnv": {
+    "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN_FOR_GH_CLI}"
+  },
+
   "customizations": {
     "vscode": {
       "extensions": [
@@ -48,7 +52,7 @@
     }
   },
 
-  "postCreateCommand": "npm install && chmod 600 ~/.ssh/* 2>/dev/null || true && cp ~/.gitconfig-host ~/.gitconfig 2>/dev/null && echo '[safe]' >> ~/.gitconfig && echo '\tdirectory = /workspace' >> ~/.gitconfig || true",
+  "postCreateCommand": "npm install && chmod 600 ~/.ssh/* 2>/dev/null || true && cp ~/.gitconfig-host ~/.gitconfig 2>/dev/null && echo '[safe]' >> ~/.gitconfig && echo '\tdirectory = /workspace' >> ~/.gitconfig && if [ -f .env ]; then set -a && source .env && set +a; fi || true",
   "postStartCommand": "npm run cf-typegen",
 
   "remoteUser": "node",

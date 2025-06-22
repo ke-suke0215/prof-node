@@ -4,10 +4,9 @@ FROM node:20-slim
 RUN apt-get update && apt-get install -y \
     git \
     curl \
-    wget \
     vim \
-    nano \
     procps \
+    make \
     && rm -rf /var/lib/apt/lists/*
 
 # Install GitHub CLI
@@ -44,6 +43,9 @@ RUN echo 'alias g="git"' >> ~/.bashrc \
     && echo 'alias t="terraform"' >> ~/.bashrc \
     && echo 'alias la="ls -A"' >> ~/.bashrc \
     && echo 'alias l="ls -CF"' >> ~/.bashrc
+
+# Load .env file if it exists
+RUN echo 'if [ -f /workspace/.env ]; then set -a && source /workspace/.env && set +a; fi' >> ~/.bashrc
 
 # Set up git config environment
 RUN echo 'export GIT_CONFIG_GLOBAL=/home/node/.gitconfig' >> /home/node/.bashrc
