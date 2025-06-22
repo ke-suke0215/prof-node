@@ -9,10 +9,6 @@
     "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig-host,type=bind,readonly,consistency=cached"
   ],
 
-  "containerEnv": {
-    "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN_FOR_GH_CLI}"
-  },
-
   "customizations": {
     "vscode": {
       "extensions": [
