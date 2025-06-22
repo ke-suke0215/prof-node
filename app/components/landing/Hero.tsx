@@ -1,6 +1,7 @@
 export function Hero() {
   return (
-    <section className="relative container mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 md:pt-32 md:pb-24 flex flex-col md:flex-row items-center text-center md:text-left">
+    <section className="relative bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="container mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 md:pt-32 md:pb-24 flex flex-col md:flex-row items-center text-center md:text-left">
       <div className="md:w-1/2 lg:w-2/5">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight tracking-tight">
           あなたのスキルを、
@@ -85,6 +86,7 @@ export function Hero() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );
