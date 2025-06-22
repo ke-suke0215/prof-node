@@ -64,11 +64,8 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <div
-      id="aurora-wrapper"
-      className="min-h-screen flex items-center justify-center p-4"
-    >
-      <div className="text-center fade-in-section opacity-100 transform-none">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 via-cyan-50 to-purple-50">
+      <div className="text-center">
         <div className="glass-header rounded-3xl p-8 max-w-md mx-auto shadow-xl">
           {isNotFound ? (
             <>
