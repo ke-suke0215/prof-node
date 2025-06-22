@@ -10,6 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - `【By ClaudeCode】` を接頭語としてつけること
   - 日本語で記述すること
   - issue に関連するプルリクエストを作成する場合は、説明欄に issue のリンクを添付すること
+- push前に .github/workflows/lint-and-format.yml と同じ静的解析のチェックを実施すること
 
 ## プロジェクト概要
 
