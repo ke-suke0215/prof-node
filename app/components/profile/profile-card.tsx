@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@/app/components/ui/card';
+import { Card, CardContent } from '~/components/ui/card';
 import { ProfileHeader } from './profile-header';
 import { SocialLinks } from './social-links';
 import { ContactSection } from './contact-section';

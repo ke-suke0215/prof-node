@@ -2,9 +2,9 @@ import type { LoaderFunctionArgs } from 'react-router';
 import { useLoaderData } from 'react-router';
 import { z } from 'zod';
 
-import { ProfileLayout } from '@/app/components/profile/profile-layout';
-import { ProfileCard } from '@/app/components/profile/profile-card';
-import { ErrorPage } from '@/app/components/profile/error-page';
+import { ProfileLayout } from '~/components/profile/profile-layout';
+import { ProfileCard } from '~/components/profile/profile-card';
+import { ErrorPage } from '~/components/profile/error-page';
 
 // nano IDのバリデーションスキーマ
 const nanoIdSchema = z.string().length(21);

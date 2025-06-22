@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Mail, Copy, Check } from 'lucide-react';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '~/components/ui/button';
 
 interface ContactSectionProps {
   email: string;

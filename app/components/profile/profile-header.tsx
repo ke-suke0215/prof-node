@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback } from '@/app/components/ui/avatar';
+import { Avatar, AvatarFallback } from '~/components/ui/avatar';
 
 interface ProfileHeaderProps {
   name: string;
