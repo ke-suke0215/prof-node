@@ -23,7 +23,7 @@ export function Hero() {
           <div className="relative">
             {/* Card 1 (Background card) */}
             <div
-              className="hero-card absolute w-48 sm:w-56 md:w-64 lg:w-72 h-auto bg-white/80 backdrop-filter backdrop-blur-md border border-gray-200/80 rounded-2xl shadow-lg p-4 sm:p-5 md:p-6"
+              className="hero-card absolute w-48 sm:w-56 md:w-64 lg:w-72 h-auto bg-white/95 backdrop-filter backdrop-blur-md border border-gray-200/80 rounded-2xl shadow-lg p-4 sm:p-5 md:p-6"
               style={{
                 transform: 'rotate(-5deg)',
                 top: '15%',
@@ -43,7 +43,7 @@ export function Hero() {
 
             {/* Card 2 (Foreground card - Jiro Suzuki) */}
             <div
-              className="hero-card absolute w-52 sm:w-60 md:w-72 lg:w-80 h-auto bg-white/90 backdrop-filter backdrop-blur-lg border border-gray-200 rounded-2xl shadow-2xl p-5 sm:p-6 md:p-8"
+              className="hero-card absolute w-52 sm:w-60 md:w-72 lg:w-80 h-auto bg-white/98 backdrop-filter backdrop-blur-lg border border-gray-200 rounded-2xl shadow-2xl p-5 sm:p-6 md:p-8"
               style={{
                 transform: 'rotate(3deg)',
                 top: '30%',

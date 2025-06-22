@@ -1,6 +1,6 @@
 export function Features() {
   return (
-    <section className="py-12 sm:py-20 md:py-32 bg-white/50">
+    <section className="py-12 sm:py-20 md:py-32 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900">
