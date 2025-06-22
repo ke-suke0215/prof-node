@@ -1,7 +1,13 @@
 export function Hero() {
   return (
-    <section className="relative bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      <div className="container mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 md:pt-32 md:pb-24 flex flex-col md:flex-row items-center text-center md:text-left">
+    <section className="relative bg-gradient-to-br from-cyan-50 via-sky-100 to-blue-100 overflow-hidden">
+      {/* 装飾的な背景要素 */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-sky-200/10 via-cyan-100/15 to-blue-200/20"></div>
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-gradient-to-br from-cyan-200/15 to-blue-300/20 rounded-full blur-3xl"></div>
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-gradient-to-tr from-sky-200/15 to-indigo-300/20 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-gradient-to-br from-cyan-100/25 to-blue-200/30 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-1/3 left-1/3 w-24 h-24 bg-gradient-to-tr from-sky-100/25 to-cyan-200/30 rounded-full blur-xl"></div>
+      <div className="relative container mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 md:pt-32 md:pb-24 flex flex-col md:flex-row items-center text-center md:text-left">
         <div className="md:w-1/2 lg:w-2/5">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight tracking-tight">
             あなたのスキルを、
