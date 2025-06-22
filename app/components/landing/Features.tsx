@@ -7,7 +7,7 @@ export function Features() {
             たった数分で、最高の出会いを演出
           </h2>
           <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-            シンプルで直感的な操作。なのに、機能はパワフル。
+            シンプルで直感的な操作。相手に簡単共有。
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12">
@@ -33,7 +33,7 @@ export function Features() {
               簡単プロフィール設定
             </h3>
             <p className="mt-2 text-sm sm:text-base text-gray-600 px-2">
-              ガイドに従って入力するだけ。あなたのスキルや実績を魅力的に見せることができます。
+              ガイドに従って入力するだけ。あなたの今を魅力的に見せることができます。
             </p>
           </div>
           <div className="fade-in-section text-center">
@@ -58,7 +58,7 @@ export function Features() {
               ワンクリック共有
             </h3>
             <p className="mt-2 text-sm sm:text-base text-gray-600 px-2">
-              生成されたURLやQRコードを使えば、いつでもどこでもあなたのプロフィールを共有できます。
+              生成されたURを使えば、いつでもどこでもあなたのプロフィールを共有できます。
             </p>
           </div>
           <div className="fade-in-section text-center sm:col-span-2 md:col-span-1">
@@ -85,7 +85,7 @@ export function Features() {
               洗練されたデザイン
             </h3>
             <p className="mt-2 text-sm sm:text-base text-gray-600 px-2">
-              受け取った相手に好印象を与える、モダンで美しいテンプレートを用意しています。
+              受け取った相手に好印象を与える、モダンでシンプルなレイアウト。
             </p>
           </div>
         </div>
