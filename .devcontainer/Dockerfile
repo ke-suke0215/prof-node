@@ -45,7 +45,5 @@ RUN echo 'alias g="git"' >> ~/.bashrc \
     && echo 'alias la="ls -A"' >> ~/.bashrc \
     && echo 'alias l="ls -CF"' >> ~/.bashrc
 
-# Fix git safe.directory issue by setting up custom git config
-RUN echo '[safe]' >> ~/.gitconfig \
-    && echo '	directory = /workspace' >> ~/.gitconfig \
-    && echo 'export GIT_CONFIG_GLOBAL=/home/node/.gitconfig' >> ~/.bashrc
+# Set up git config environment
+RUN echo 'export GIT_CONFIG_GLOBAL=/home/node/.gitconfig' >> /home/node/.bashrc

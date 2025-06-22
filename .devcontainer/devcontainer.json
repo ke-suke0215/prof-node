@@ -5,7 +5,8 @@
   },
 
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,readonly,consistency=cached"
+    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,readonly,consistency=cached",
+    "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig-host,type=bind,readonly,consistency=cached"
   ],
 
   "customizations": {
@@ -47,7 +48,7 @@
     }
   },
 
-  "postCreateCommand": "npm install && chmod 600 ~/.ssh/* 2>/dev/null || true && if [ -f ${localEnv:HOME}/.gitconfig ]; then cp ${localEnv:HOME}/.gitconfig /home/node/.gitconfig; fi",
+  "postCreateCommand": "npm install && chmod 600 ~/.ssh/* 2>/dev/null || true && cp ~/.gitconfig-host ~/.gitconfig 2>/dev/null && echo '[safe]' >> ~/.gitconfig && echo '\tdirectory = /workspace' >> ~/.gitconfig || true",
   "postStartCommand": "npm run cf-typegen",
 
   "remoteUser": "node",
