@@ -48,7 +48,7 @@
     }
   },
 
-  "postCreateCommand": "npm install && chmod 600 ~/.ssh/* 2>/dev/null || true && cp ~/.gitconfig-host ~/.gitconfig 2>/dev/null && echo '[safe]' >> ~/.gitconfig && echo '\tdirectory = /workspace' >> ~/.gitconfig || true",
+  "postCreateCommand": "npm install && chmod 600 ~/.ssh/* 2>/dev/null || true && cp ~/.gitconfig-host ~/.gitconfig 2>/dev/null && echo '[safe]' >> ~/.gitconfig && echo '\tdirectory = /workspace' >> ~/.gitconfig && if [ -f .env ]; then set -a && source .env && set +a; fi || true",
   "postStartCommand": "npm run cf-typegen",
 
   "remoteUser": "node",

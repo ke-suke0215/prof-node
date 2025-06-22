@@ -11,6 +11,10 @@
 .wrangler
 .dev.vars*
 
+# Environment files
+.env*
+!.env.sample
+
 # Other
 .vscode/
 .idea/
