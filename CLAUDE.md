@@ -5,11 +5,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 作業の注意点
 
 - 修正はブランチを作成し、プルリクエストべースで行うこと
-- Github上のissueやプルリクエストへ記述
-  - `【By ClaudeCode】` を接頭語としてつけること
-  - 日本語で記述すること
-  - issue に関連するプルリクエストを作成する場合は、説明欄に issue のリンクを添付すること
-- push前に .github/workflows/lint-and-format.yml と同じ静的解析のチェックを実施すること
+- Githubの操作
+  - Github上のissueやプルリクエストへ記述
+    - `【By ClaudeCode】` を接頭語としてつけること
+    - 日本語で記述すること
+    - issue に関連するプルリクエストを作成する場合は、説明欄に issue のリンクを添付すること
+  - push前に .github/workflows/lint-and-format.yml と同じ静的解析のチェックを実施すること
+  - push後には `sleep 60` を実行することで1分間待機をし、プルリクエストのCI/CDが成功しているかを確認する
+    - 成功している場合は次のタスクにとりかかる
+    - 失敗している場合は原因を調査して修正を行う
 
 ## プロジェクト概要
 
