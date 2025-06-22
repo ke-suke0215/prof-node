@@ -2,6 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 作業の注意点
+
+- 作業が終わりユーザの入力を待つ前に、say コマンドを使って通知すること
+- 修正はブランチを作成し、プルリクエストべースで行うこと
+- Github上のissueやプルリクエストへ記述
+  - `【By ClaudeCode】` を接頭語としてつけること
+  - 日本語で記述すること
+  - issue に関連するプルリクエストを作成する場合は、説明欄に issue のリンクを添付すること
+
 ## プロジェクト概要
 
 **ProfNode** - エンジニア向け Web 名刺サービス
