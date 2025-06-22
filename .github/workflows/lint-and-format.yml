@@ -2,6 +2,13 @@ name: Lint and Format Check
 
 on:
   push:
+    paths:
+      - 'app/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
+      - 'eslint.config.js'
+      - '.github/workflows/lint-and-format.yml'
 
 jobs:
   lint-and-format:
