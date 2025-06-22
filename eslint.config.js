@@ -31,6 +31,10 @@ export default [
         MouseEvent: 'readonly',
         IntersectionObserver: 'readonly',
         window: 'readonly',
+        HTMLButtonElement: 'readonly',
+        HTMLDivElement: 'readonly',
+        Element: 'readonly',
+        setTimeout: 'readonly',
       },
     },
     plugins: {
