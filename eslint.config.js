@@ -33,6 +33,7 @@ export default [
         window: 'readonly',
         HTMLButtonElement: 'readonly',
         HTMLDivElement: 'readonly',
+        HTMLInputElement: 'readonly',
         Element: 'readonly',
         setTimeout: 'readonly',
       },
