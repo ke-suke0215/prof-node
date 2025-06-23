@@ -58,7 +58,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         />
       );
     }
-    
+
     return (
       <ErrorPage
         title="エラー"

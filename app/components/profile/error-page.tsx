@@ -19,16 +19,28 @@ export function ErrorPage({
         <CardContent className="text-center p-12">
           <div className="mb-6">
             <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-100 to-sky-100 flex items-center justify-center">
-              <svg className="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              <svg
+                className="w-12 h-12 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"
+                />
               </svg>
             </div>
           </div>
           <h1 className="text-5xl font-bold text-blue-900 mb-4">{title}</h1>
-          <p className="text-lg text-blue-700 mb-8 leading-relaxed">{message}</p>
+          <p className="text-lg text-blue-700 mb-8 leading-relaxed">
+            {message}
+          </p>
           {showHomeButton && (
-            <Button 
-              asChild 
+            <Button
+              asChild
               className="bg-gradient-to-r from-blue-600 to-sky-600 hover:from-blue-700 hover:to-sky-700 text-white px-8 py-3 rounded-full shadow-lg transition-all duration-200 hover:shadow-xl"
             >
               <a href="/">ホームに戻る</a>
