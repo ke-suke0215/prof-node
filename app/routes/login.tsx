@@ -23,7 +23,7 @@ export default function Login() {
       <div className="absolute inset-0 bg-gradient-to-tr from-sky-200/10 via-cyan-100/15 to-blue-200/20"></div>
       <div className="absolute -top-16 -left-16 w-80 h-80 bg-gradient-to-br from-cyan-200/15 to-blue-300/20 rounded-full blur-3xl"></div>
       <div className="absolute -bottom-16 -right-16 w-80 h-80 bg-gradient-to-tl from-sky-200/15 to-indigo-300/20 rounded-full blur-3xl"></div>
-      
+
       <div className="relative max-w-md w-full space-y-8">
         <div className="text-center">
           <h1 className="text-3xl font-black text-gray-900 mb-2">
@@ -33,7 +33,7 @@ export default function Login() {
             ログインまたは新規登録してWeb名刺を始めましょう
           </p>
         </div>
-        
+
         <div className="backdrop-blur-sm bg-white/90 rounded-2xl shadow-xl p-8 border border-white/30">
           <Auth
             supabaseClient={supabase}
@@ -178,16 +178,22 @@ export default function Login() {
             }}
           />
         </div>
-        
+
         <div className="text-center">
           <p className="text-sm text-gray-600">
             アカウントを作成することで、
             <br />
-            <a href="/terms" className="text-blue-600 hover:text-blue-700 font-medium">
+            <a
+              href="/terms"
+              className="text-blue-600 hover:text-blue-700 font-medium"
+            >
               利用規約
             </a>
             と
-            <a href="/privacy" className="text-blue-600 hover:text-blue-700 font-medium">
+            <a
+              href="/privacy"
+              className="text-blue-600 hover:text-blue-700 font-medium"
+            >
               プライバシーポリシー
             </a>
             に同意したものとみなされます。
