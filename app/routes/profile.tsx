@@ -68,7 +68,8 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     return { profile: FIXED_PROFILE_DATA };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      throw new Response('Invalid profile ID', { status: 400 });
+      // nano IDの形式が正しくない場合は404を返す（catch-allの代わり）
+      throw new Response('Not Found', { status: 404 });
     }
     throw error;
   }
@@ -84,7 +85,17 @@ export default function ProfilePage() {
   );
 }
 
-// エラー境界の設定
-export function ErrorBoundary() {
+// プロフィール固有のエラーのみErrorBoundaryで処理し、404はroot levelに委ねる
+export function ErrorBoundary({
+  error,
+}: {
+  error: Error & { status?: number };
+}) {
+  // 404エラーの場合はroot levelのErrorBoundaryに委ねる
+  if (error?.status === 404) {
+    throw error;
+  }
+
+  // その他のエラーのみプロフィール専用ページで処理
   return <ErrorPage />;
 }
