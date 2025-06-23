@@ -61,20 +61,28 @@ export default function Login() {
           {/* メール/パスワードフォーム */}
           <form className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 メールアドレス
               </label>
               <input
+                id="email"
                 type="email"
                 placeholder="メールアドレスを入力"
                 className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 パスワード
               </label>
               <input
+                id="password"
                 type="password"
                 placeholder="パスワードを入力"
                 className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
