@@ -9,6 +9,7 @@ import {
 
 import type { Route } from './+types/root';
 import './app.css';
+import { ErrorPage } from './components/profile/error-page';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -47,30 +48,43 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = 'Oops!';
-  let details = 'An unexpected error occurred.';
-  let stack: string | undefined;
-
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404' : 'Error';
-    details =
-      error.status === 404
-        ? 'The requested page could not be found.'
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
+    if (error.status === 404) {
+      return (
+        <ErrorPage
+          title="404"
+          message="お探しのページが見つかりませんでした"
+          showHomeButton={true}
+        />
+      );
+    }
+    
+    return (
+      <ErrorPage
+        title="エラー"
+        message={error.statusText || '予期しないエラーが発生しました'}
+        showHomeButton={true}
+      />
+    );
+  }
+
+  if (import.meta.env.DEV && error && error instanceof Error) {
+    return (
+      <main className="pt-16 p-4 container mx-auto">
+        <h1>開発エラー</h1>
+        <p>{error.message}</p>
+        <pre className="w-full p-4 overflow-x-auto">
+          <code>{error.stack}</code>
+        </pre>
+      </main>
+    );
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
+    <ErrorPage
+      title="エラー"
+      message="予期しないエラーが発生しました"
+      showHomeButton={true}
+    />
   );
 }
