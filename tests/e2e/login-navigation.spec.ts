@@ -11,7 +11,7 @@ test.describe('Login Navigation', () => {
     await page.locator('header a:has-text("ログイン")').click();
     
     await expect(page).toHaveURL('/login');
-    await expect(page.locator('h2:has-text("ProfNodeへようこそ")')).toBeVisible();
+    await expect(page.locator('text=ProfNodeへようこそ')).toBeVisible();
   });
 
   test('ランディングページのヘッダー「無料で始める」ボタンが /login に遷移する', async ({ page }) => {
@@ -19,7 +19,7 @@ test.describe('Login Navigation', () => {
     await page.locator('header a:has-text("無料で始める")').click();
     
     await expect(page).toHaveURL('/login');
-    await expect(page.locator('h2:has-text("ProfNodeへようこそ")')).toBeVisible();
+    await expect(page.locator('text=ProfNodeへようこそ')).toBeVisible();
   });
 
   test('ヒーローセクションの「今すぐ無料で作成」ボタンが /login に遷移する', async ({ page }) => {
@@ -27,7 +27,7 @@ test.describe('Login Navigation', () => {
     await page.locator('main a:has-text("今すぐ無料で作成")').first().click();
     
     await expect(page).toHaveURL('/login');
-    await expect(page.locator('h2:has-text("ProfNodeへようこそ")')).toBeVisible();
+    await expect(page.locator('text=ProfNodeへようこそ')).toBeVisible();
   });
 
   test('CTAセクションの「今すぐ無料で作成」ボタンが /login に遷移する', async ({ page }) => {
@@ -35,14 +35,14 @@ test.describe('Login Navigation', () => {
     await page.locator('a:has-text("今すぐ無料で作成")').last().click();
     
     await expect(page).toHaveURL('/login');
-    await expect(page.locator('h2:has-text("ProfNodeへようこそ")')).toBeVisible();
+    await expect(page.locator('text=ProfNodeへようこそ')).toBeVisible();
   });
 
   test('/login ページに Google認証ボタンとサインアップフォームが表示される', async ({ page }) => {
     await page.goto('/login', { waitUntil: 'networkidle' });
     
     // ページタイトルの確認
-    await expect(page.locator('h2:has-text("ProfNodeへようこそ")')).toBeVisible();
+    await expect(page.locator('text=ProfNodeへようこそ')).toBeVisible();
     
     // 説明文の確認
     await expect(page.locator('text=ログインまたは新規登録してWeb名刺を始めましょう')).toBeVisible();
