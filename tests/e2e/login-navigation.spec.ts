@@ -41,6 +41,11 @@ test.describe('Login Navigation', () => {
     await expect(page).toHaveURL('/login');
     
     // 基本的な要素の存在確認（緩い条件）
-    await expect(page.locator('button, input, form')).toHaveCount({ min: 1 });
+    const buttonCount = await page.locator('button').count();
+    const inputCount = await page.locator('input').count();
+    const formCount = await page.locator('form').count();
+    
+    // 最低でも1つのボタンまたは入力要素またはフォームが存在することを確認
+    expect(buttonCount + inputCount + formCount).toBeGreaterThan(0);
   });
 });
