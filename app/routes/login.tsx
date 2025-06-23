@@ -1,11 +1,4 @@
 import type { Route } from './+types/login';
-import { Auth } from '@supabase/auth-ui-react';
-import { ThemeSupa } from '@supabase/auth-ui-shared';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = 'https://your-project.supabase.co';
-const supabaseKey = 'your-anon-key';
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -35,148 +28,82 @@ export default function Login() {
         </div>
 
         <div className="backdrop-blur-sm bg-white/90 rounded-2xl shadow-xl p-8 border border-white/30">
-          <Auth
-            supabaseClient={supabase}
-            appearance={{
-              theme: ThemeSupa,
-              variables: {
-                default: {
-                  colors: {
-                    brand: '#2563eb',
-                    brandAccent: '#1d4ed8',
-                    brandButtonText: 'white',
-                    defaultButtonBackground: '#f8fafc',
-                    defaultButtonBackgroundHover: '#f1f5f9',
-                    defaultButtonBorder: '#e2e8f0',
-                    defaultButtonText: '#334155',
-                    dividerBackground: '#e2e8f0',
-                    inputBackground: '#ffffff',
-                    inputBorder: '#e2e8f0',
-                    inputBorderHover: '#cbd5e1',
-                    inputBorderFocus: '#2563eb',
-                    inputText: '#1e293b',
-                    inputLabelText: '#475569',
-                    inputPlaceholder: '#94a3b8',
-                    messageText: '#dc2626',
-                    messageTextDanger: '#dc2626',
-                    anchorTextColor: '#2563eb',
-                    anchorTextHoverColor: '#1d4ed8',
-                  },
-                  space: {
-                    spaceSmall: '4px',
-                    spaceMedium: '8px',
-                    spaceLarge: '16px',
-                    labelBottomMargin: '8px',
-                    anchorBottomMargin: '4px',
-                    emailInputSpacing: '4px',
-                    socialAuthSpacing: '4px',
-                    buttonPadding: '10px 15px',
-                    inputPadding: '10px 15px',
-                  },
-                  fontSizes: {
-                    baseBodySize: '14px',
-                    baseInputSize: '14px',
-                    baseLabelSize: '14px',
-                    baseButtonSize: '14px',
-                  },
-                  fonts: {
-                    bodyFontFamily: `ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif`,
-                    buttonFontFamily: `ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif`,
-                    inputFontFamily: `ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif`,
-                    labelFontFamily: `ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif`,
-                  },
-                  borderWidths: {
-                    buttonBorderWidth: '1px',
-                    inputBorderWidth: '1px',
-                  },
-                  radii: {
-                    borderRadiusButton: '8px',
-                    buttonBorderRadius: '8px',
-                    inputBorderRadius: '8px',
-                  },
-                },
-              },
-              style: {
-                button: {
-                  borderRadius: '8px',
-                  fontWeight: '600',
-                },
-                anchor: {
-                  fontWeight: '500',
-                },
-                container: {
-                  gap: '16px',
-                },
-                divider: {
-                  background: '#e2e8f0',
-                  margin: '16px 0',
-                },
-                label: {
-                  fontWeight: '500',
-                  color: '#475569',
-                },
-                input: {
-                  borderRadius: '8px',
-                  border: '1px solid #e2e8f0',
-                  padding: '10px 12px',
-                },
-                message: {
-                  fontSize: '13px',
-                  marginTop: '4px',
-                },
-              },
-            }}
-            providers={['google']}
-            redirectTo={window.location.origin + '/dashboard'}
-            localization={{
-              variables: {
-                sign_up: {
-                  email_label: 'メールアドレス',
-                  password_label: 'パスワード',
-                  email_input_placeholder: 'メールアドレスを入力',
-                  password_input_placeholder: 'パスワードを入力',
-                  button_label: 'アカウント作成',
-                  loading_button_label: '作成中...',
-                  social_provider_text: '{{provider}}でログイン',
-                  link_text: 'アカウントをお持ちでない方はこちら',
-                  confirmation_text: 'メールをご確認ください',
-                },
-                sign_in: {
-                  email_label: 'メールアドレス',
-                  password_label: 'パスワード',
-                  email_input_placeholder: 'メールアドレスを入力',
-                  password_input_placeholder: 'パスワードを入力',
-                  button_label: 'ログイン',
-                  loading_button_label: 'ログイン中...',
-                  social_provider_text: '{{provider}}でログイン',
-                  link_text: 'すでにアカウントをお持ちの方はこちら',
-                },
-                magic_link: {
-                  email_input_label: 'メールアドレス',
-                  email_input_placeholder: 'メールアドレスを入力',
-                  button_label: 'マジックリンクを送信',
-                  loading_button_label: '送信中...',
-                  link_text: 'マジックリンクでログイン',
-                  confirmation_text: 'メールをご確認ください',
-                },
-                forgotten_password: {
-                  email_label: 'メールアドレス',
-                  password_label: 'パスワード',
-                  email_input_placeholder: 'メールアドレスを入力',
-                  button_label: 'パスワード再設定メールを送信',
-                  loading_button_label: '送信中...',
-                  link_text: 'パスワードをお忘れの方はこちら',
-                  confirmation_text: 'パスワード再設定メールを送信しました',
-                },
-                update_password: {
-                  password_label: '新しいパスワード',
-                  password_input_placeholder: '新しいパスワードを入力',
-                  button_label: 'パスワードを更新',
-                  loading_button_label: '更新中...',
-                },
-              },
-            }}
-          />
+          {/* Google認証ボタン */}
+          <button className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-700 font-medium hover:bg-gray-50 transition-colors mb-4">
+            <svg className="w-5 h-5" viewBox="0 0 24 24">
+              <path
+                fill="#4285f4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+              />
+              <path
+                fill="#34a853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              />
+              <path
+                fill="#fbbc05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+              />
+              <path
+                fill="#ea4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+              />
+            </svg>
+            Googleでログイン
+          </button>
+
+          {/* 区切り線 */}
+          <div className="relative flex items-center my-6">
+            <div className="flex-grow border-t border-gray-200"></div>
+            <span className="px-3 text-sm text-gray-500 bg-white">または</span>
+            <div className="flex-grow border-t border-gray-200"></div>
+          </div>
+
+          {/* メール/パスワードフォーム */}
+          <form className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                メールアドレス
+              </label>
+              <input
+                type="email"
+                placeholder="メールアドレスを入力"
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                パスワード
+              </label>
+              <input
+                type="password"
+                placeholder="パスワードを入力"
+                className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              ログイン
+            </button>
+          </form>
+
+          {/* ユーザー登録リンク */}
+          <div className="text-center mt-6">
+            <p className="text-sm text-gray-600">
+              アカウントをお持ちでない方は
+              <button className="text-blue-600 hover:text-blue-700 font-medium ml-1">
+                こちら
+              </button>
+            </p>
+          </div>
+
+          {/* パスワードを忘れた場合 */}
+          <div className="text-center mt-3">
+            <button className="text-sm text-blue-600 hover:text-blue-700">
+              パスワードをお忘れの方はこちら
+            </button>
+          </div>
         </div>
 
         <div className="text-center">
