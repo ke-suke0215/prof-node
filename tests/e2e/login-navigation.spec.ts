@@ -55,7 +55,7 @@ test.describe('Login Navigation', () => {
     await expect(page.locator('button[type="submit"]:has-text("ログイン")')).toBeVisible();
     
     // その他のUI要素の確認
-    await expect(page.locator('text=または')).toBeVisible();
+    await expect(page.locator('span:has-text("または")')).toBeVisible();
     await expect(page.locator('text=アカウントをお持ちでない方は')).toBeVisible();
     await expect(page.locator('text=パスワードをお忘れの方はこちら')).toBeVisible();
   });
