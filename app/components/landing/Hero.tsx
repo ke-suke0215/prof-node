@@ -19,7 +19,7 @@ export function Hero() {
           </p>
           <div className="mt-6 sm:mt-8">
             <a
-              href="/login"
+              href="/signup"
               className="inline-block bg-blue-600 text-white font-bold py-3 px-6 sm:px-8 rounded-lg text-base sm:text-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 border-none cursor-pointer"
             >
               今すぐ無料で作成
