@@ -18,6 +18,13 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
     && apt-get install gh -y \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Supabase CLI
+RUN curl -fsSL https://github.com/supabase/cli/releases/latest/download/supabase_linux_amd64.tar.gz -o supabase.tar.gz \
+    && tar -xzf supabase.tar.gz \
+    && mv supabase /usr/local/bin/supabase \
+    && rm supabase.tar.gz \
+    && chmod +x /usr/local/bin/supabase
+
 # Set up non-root user
 ARG USERNAME=node
 ARG USER_UID=1000
@@ -39,9 +46,8 @@ RUN echo 'alias g="git"' >> ~/.bashrc \
     && echo 'alias gs="git status"' >> ~/.bashrc \
     && echo 'alias d="docker"' >> ~/.bashrc \
     && echo 'alias dc="docker compose"' >> ~/.bashrc \
-    && echo 'alias br="bin/rails"' >> ~/.bashrc \
+    && echo 'alias sb="supabase"' >> ~/.bashrc \
     && echo 'alias ll="ls -la"' >> ~/.bashrc \
-    && echo 'alias t="terraform"' >> ~/.bashrc \
     && echo 'alias la="ls -A"' >> ~/.bashrc \
     && echo 'alias l="ls -CF"' >> ~/.bashrc
 
