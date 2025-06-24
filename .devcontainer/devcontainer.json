@@ -3,10 +3,6 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-  },
 
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,readonly,consistency=cached",
