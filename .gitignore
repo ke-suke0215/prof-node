@@ -11,6 +11,9 @@
 .wrangler
 .dev.vars*
 
+# Supabase
+supabase/.temp/
+
 # Environment files
 .env*
 !.env.sample
