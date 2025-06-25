@@ -6,6 +6,7 @@ import { OtherLinks } from './other-links';
 
 interface ProfileData {
   name: string;
+  subName?: string;
   title: string;
   company: string;
   email: string;
@@ -28,11 +29,12 @@ interface ProfileCardProps {
 
 export function ProfileCard({ profile }: ProfileCardProps) {
   return (
-    <div className="relative w-full max-w-md mx-auto">
+    <div className="relative w-full max-w-sm mx-auto px-2">
       <Card className="relative w-full mx-auto rounded-2xl overflow-hidden shadow-xl transition-all duration-300 backdrop-blur-lg bg-white/70 border border-white/20">
-        <CardContent className="p-8 md:p-10">
+        <CardContent className="px-6 py-8 md:px-8 md:py-10">
           <ProfileHeader
             name={profile.name}
+            subName={profile.subName}
             title={profile.title}
             company={profile.company}
           />

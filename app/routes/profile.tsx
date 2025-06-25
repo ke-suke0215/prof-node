@@ -12,6 +12,7 @@ const nanoIdSchema = z.string().length(21);
 // プロフィールデータの型定義
 interface ProfileData {
   name: string;
+  subName?: string;
   title: string;
   company: string;
   email: string;
@@ -30,25 +31,20 @@ interface ProfileData {
 
 // 固定のプロフィールデータ（ZiFx0qtfRoUaZ7PTCNlBA用）
 const FIXED_PROFILE_DATA: ProfileData = {
-  name: 'Taro Yamada',
-  title: 'Frontend Engineer',
-  company: 'Tech Innovate Inc.',
-  email: 'taro.yamada@example.com',
+  name: 'Keisuke Isoda',
+  subName: '磯田 圭佑',
+  title: 'Software Engineer',
+  company: '株式会社LegalOn Technologies',
+  email: 'keisuke.yohs.0215.1209@gmail.com',
   links: {
-    github: 'https://github.com/taroyamada',
-    twitter: 'https://twitter.com/taroyamada',
-    linkedin: 'https://linkedin.com/in/taroyamada',
-    qiita: 'https://qiita.com/taroyamada',
-    zenn: 'https://zenn.dev/taroyamada',
+    github: 'https://github.com/ke-suke0215',
+    twitter: 'https://x.com/02ke____sk15',
+    linkedin: 'https://www.linkedin.com/in/keisuke-isoda-3b7677341/',
   },
   otherLinks: [
     {
-      title: 'My Portfolio',
-      url: 'https://portfolio.example.com',
-    },
-    {
-      title: 'My Blog',
-      url: 'https://blog.example.com',
+      title: 'Qiita',
+      url: 'https://qiita.com/ke_suke0215',
     },
   ],
 };
