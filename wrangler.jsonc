@@ -4,5 +4,9 @@
   "compatibility_date": "2025-04-04",
   "compatibility_flags": ["nodejs_compat"],
   "main": "./workers/app.ts",
-  "vars": {}
+  "vars": {
+    "SUPABASE_URL": "your_supabase_project_url",
+    "SUPABASE_ANON_KEY": "your_supabase_anon_key",
+    "DATABASE_URL": "postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-REF].supabase.co:5432/postgres"
+  }
 }
