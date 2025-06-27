@@ -13,7 +13,7 @@ export function meta({}: Route.MetaArgs) {
     {
       name: 'description',
       content:
-        'ProfNodeでアカウントを作成して、あなただけのデジタル名刺を始めましょう。',
+        'ProfNodeに新規登録して、あなただけのデジタル名刺を始めましょう。',
     },
   ];
 }
@@ -23,7 +23,7 @@ export default function Register() {
     <AuthLayout
       title="アカウント作成"
       subtitle=""
-      description="ProfNodeで新しいアカウントを作成"
+      description="ProfNodeに新規登録"
     >
       <div className="space-y-6">
         {/* OAuth Buttons */}
