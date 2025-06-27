@@ -6,6 +6,7 @@ import {
   GitHubIcon,
 } from '../components/auth/OAuthButton';
 import { FormField, Divider } from '../components/auth/AuthForm';
+import { Button } from '../components/ui/button';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -70,12 +71,9 @@ export default function Register() {
           />
 
           <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2.5 sm:py-3 px-4 border border-transparent text-sm sm:text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-            >
+            <Button type="submit" variant="primary" size="auth-submit">
               登録する
-            </button>
+            </Button>
           </div>
         </form>
 

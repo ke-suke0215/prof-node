@@ -1,3 +1,5 @@
+import { Button } from '../ui/button';
+
 interface OAuthButtonProps {
   provider: 'google' | 'github';
   children: React.ReactNode;
@@ -9,13 +11,15 @@ export function OAuthButton({ provider, children, onClick }: OAuthButtonProps) {
     provider === 'google' ? 'focus:ring-blue-500' : 'focus:ring-gray-500';
 
   return (
-    <button
+    <Button
       type="button"
       onClick={onClick}
-      className={`w-full flex justify-center items-center px-3 py-2.5 sm:px-4 sm:py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 ${ringColor} transition-colors`}
+      variant="oauth"
+      size="auth"
+      className={`shadow-sm ${ringColor}`}
     >
       {children}
-    </button>
+    </Button>
   );
 }
 
