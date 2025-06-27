@@ -12,7 +12,7 @@ export function OAuthButton({ provider, children, onClick }: OAuthButtonProps) {
     <button
       type="button"
       onClick={onClick}
-      className={`w-full flex justify-center items-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 ${ringColor} transition-colors`}
+      className={`w-full flex justify-center items-center px-3 py-2.5 sm:px-4 sm:py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 ${ringColor} transition-colors`}
     >
       {children}
     </button>
@@ -21,7 +21,7 @@ export function OAuthButton({ provider, children, onClick }: OAuthButtonProps) {
 
 export function GoogleIcon() {
   return (
-    <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
+    <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" viewBox="0 0 24 24">
       <path
         fill="#4285F4"
         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -44,7 +44,11 @@ export function GoogleIcon() {
 
 export function GitHubIcon() {
   return (
-    <svg className="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
+    <svg
+      className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+    >
       <path d="M12 0a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 0z" />
     </svg>
   );

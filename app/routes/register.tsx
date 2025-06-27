@@ -26,7 +26,7 @@ export default function Register() {
     >
       <div className="space-y-6">
         {/* OAuth Buttons */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="space-y-3">
           <OAuthButton provider="google">
             <GoogleIcon />
             Googleで登録
@@ -41,7 +41,7 @@ export default function Register() {
         <Divider>または</Divider>
 
         {/* Email Form */}
-        <form className="space-y-6">
+        <form className="space-y-4 sm:space-y-6">
           <FormField
             id="email"
             label="メールアドレス"
@@ -72,7 +72,7 @@ export default function Register() {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+              className="group relative w-full flex justify-center py-2.5 sm:py-3 px-4 border border-transparent text-sm sm:text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
             >
               登録する
             </button>
@@ -81,7 +81,7 @@ export default function Register() {
 
         {/* Login Link */}
         <div className="text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-xs sm:text-sm text-gray-600">
             すでにアカウントをお持ちですか？{' '}
             <a
               href="/login"

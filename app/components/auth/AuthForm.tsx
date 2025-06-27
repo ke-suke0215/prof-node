@@ -17,7 +17,10 @@ export function FormField({
 }: FormFieldProps) {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700">
+      <label
+        htmlFor={id}
+        className="block text-xs sm:text-sm font-medium text-gray-700"
+      >
         {label}
       </label>
       <div className="mt-1">
@@ -27,7 +30,7 @@ export function FormField({
           type={type}
           autoComplete={autoComplete}
           required={required}
-          className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          className="appearance-none block w-full px-3 py-2 sm:py-2.5 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
           placeholder={placeholder}
         />
       </div>
