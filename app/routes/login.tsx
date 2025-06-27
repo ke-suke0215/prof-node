@@ -1,4 +1,4 @@
-import type { Route } from './+types/register';
+import type { Route } from './+types/login';
 import { AuthLayout } from '../components/auth/AuthLayout';
 import {
   OAuthButton,
@@ -10,32 +10,32 @@ import { Button } from '../components/ui/button';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'ユーザー登録 - ProfNode' },
+    { title: 'ログイン - ProfNode' },
     {
       name: 'description',
-      content: 'ProfNodeに登録して、あなただけのデジタル名刺を作成しましょう。',
+      content: 'ProfNodeにログインして、あなたのデジタル名刺を管理しましょう。',
     },
   ];
 }
 
-export default function Register() {
+export default function Login() {
   return (
     <AuthLayout
-      title="ProfNodeに登録"
+      title="ProfNodeにログイン"
       subtitle=""
-      description="新規登録(無料)して利用を開始しましょう。"
+      description="お帰りなさい。ログインして続行してください。"
     >
       <div className="space-y-6">
         {/* OAuth Buttons */}
         <div className="space-y-3">
           <OAuthButton provider="google">
             <GoogleIcon />
-            Googleで登録
+            Googleでログイン
           </OAuthButton>
 
           <OAuthButton provider="github">
             <GitHubIcon />
-            GitHubで登録
+            GitHubでログイン
           </OAuthButton>
         </div>
 
@@ -56,36 +56,27 @@ export default function Register() {
             id="password"
             label="パスワード"
             type="password"
-            autoComplete="new-password"
+            autoComplete="current-password"
             placeholder="パスワードを入力"
-            required
-          />
-
-          <FormField
-            id="password-confirm"
-            label="パスワード確認"
-            type="password"
-            autoComplete="new-password"
-            placeholder="パスワードを再入力"
             required
           />
 
           <div>
             <Button type="submit" variant="primary" size="auth-submit">
-              登録する
+              ログイン
             </Button>
           </div>
         </form>
 
-        {/* Login Link */}
+        {/* Register Link */}
         <div className="text-center">
           <p className="text-xs sm:text-sm text-gray-600">
-            すでにアカウントをお持ちですか？{' '}
+            アカウントをお持ちでない方は{' '}
             <a
-              href="/login"
+              href="/register"
               className="font-medium text-blue-600 hover:text-blue-500"
             >
-              ログイン
+              新規登録
             </a>
           </p>
         </div>
