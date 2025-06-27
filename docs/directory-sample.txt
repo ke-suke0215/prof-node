@@ -1,4 +1,4 @@
-📦 web-business-card/
+じょう📦 web-business-card/
 ├── 📂 app/                              # React Router v7 アプリケーション
 │   ├── 📜 routes.ts                     # ルート設定（Configuration-based）
 │   ├── 📜 root.tsx                      # ルートコンポーネント
