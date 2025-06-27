@@ -9,11 +9,10 @@ import { FormField, Divider } from '../components/auth/AuthForm';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'アカウント登録 - ProfNode' },
+    { title: 'ユーザー登録 - ProfNode' },
     {
       name: 'description',
-      content:
-        'ProfNodeに新規登録して、あなただけのデジタル名刺を始めましょう。',
+      content: 'ProfNodeに登録して、あなただけのデジタル名刺を作成しましょう。',
     },
   ];
 }
@@ -21,23 +20,21 @@ export function meta({}: Route.MetaArgs) {
 export default function Register() {
   return (
     <AuthLayout
-      title="アカウント作成"
+      title="ProfNodeに登録"
       subtitle=""
-      description="ProfNodeに新規登録"
+      description="新規登録(無料)して利用を開始しましょう。"
     >
       <div className="space-y-6">
         {/* OAuth Buttons */}
-        <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <OAuthButton provider="google">
             <GoogleIcon />
-            Googleでアカウント作成
+            Googleで登録
           </OAuthButton>
-        </div>
 
-        <div>
           <OAuthButton provider="github">
             <GitHubIcon />
-            GitHubでアカウント作成
+            GitHubで登録
           </OAuthButton>
         </div>
 
@@ -77,7 +74,7 @@ export default function Register() {
               type="submit"
               className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
             >
-              アカウントを作成
+              登録する
             </button>
           </div>
         </form>
@@ -85,12 +82,12 @@ export default function Register() {
         {/* Login Link */}
         <div className="text-center">
           <p className="text-sm text-gray-600">
-            既にアカウントをお持ちですか？{' '}
+            すでにアカウントをお持ちですか？{' '}
             <a
               href="/login"
               className="font-medium text-blue-600 hover:text-blue-500"
             >
-              ログインはこちら
+              ログイン
             </a>
           </p>
         </div>
