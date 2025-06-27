@@ -3,7 +3,8 @@ export function meta() {
     { title: 'アカウント登録 - ProfNode' },
     {
       name: 'description',
-      content: 'ProfNodeでアカウントを作成して、あなただけのデジタル名刺を始めましょう。',
+      content:
+        'ProfNodeでアカウントを作成して、あなただけのデジタル名刺を始めましょう。',
     },
   ];
 }
@@ -13,12 +14,8 @@ export default function Register() {
     <div className="min-h-screen animated-gradient flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
-          <h1 className="text-3xl font-black text-gray-900 mb-2">
-            ProfNode
-          </h1>
-          <h2 className="text-xl font-bold text-gray-700">
-            アカウント作成
-          </h2>
+          <h1 className="text-3xl font-black text-gray-900 mb-2">ProfNode</h1>
+          <h2 className="text-xl font-bold text-gray-700">アカウント作成</h2>
           <p className="mt-2 text-sm text-gray-600">
             あなただけのデジタル名刺を始めましょう
           </p>
@@ -62,7 +59,11 @@ export default function Register() {
                 type="button"
                 className="w-full flex justify-center items-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
               >
-                <svg className="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <svg
+                  className="w-5 h-5 mr-3"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path d="M12 0a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 0z" />
                 </svg>
                 GitHubでアカウント作成
@@ -82,7 +83,10 @@ export default function Register() {
             {/* Email Form */}
             <form className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   メールアドレス
                 </label>
                 <div className="mt-1">
@@ -99,7 +103,10 @@ export default function Register() {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   パスワード
                 </label>
                 <div className="mt-1">
@@ -116,7 +123,10 @@ export default function Register() {
               </div>
 
               <div>
-                <label htmlFor="password-confirm" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="password-confirm"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   パスワード確認
                 </label>
                 <div className="mt-1">
@@ -146,7 +156,10 @@ export default function Register() {
             <div className="text-center">
               <p className="text-sm text-gray-600">
                 既にアカウントをお持ちですか？{' '}
-                <a href="/login" className="font-medium text-blue-600 hover:text-blue-500">
+                <a
+                  href="/login"
+                  className="font-medium text-blue-600 hover:text-blue-500"
+                >
                   ログインはこちら
                 </a>
               </p>

@@ -15,7 +15,10 @@ export function CTA() {
           Web名刺を始めよう。
         </h2>
         <div className="mt-6 sm:mt-8">
-          <a href="/register" className="inline-block bg-blue-600 text-white font-bold py-3 px-6 sm:py-4 sm:px-10 rounded-lg text-lg sm:text-xl hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 border-none cursor-pointer text-center">
+          <a
+            href="/register"
+            className="inline-block bg-blue-600 text-white font-bold py-3 px-6 sm:py-4 sm:px-10 rounded-lg text-lg sm:text-xl hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 border-none cursor-pointer text-center"
+          >
             今すぐ無料で作成
           </a>
         </div>
