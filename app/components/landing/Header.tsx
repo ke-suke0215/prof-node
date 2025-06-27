@@ -6,12 +6,18 @@ export function Header() {
           ProfNode
         </div>
         <div className="flex items-center space-x-2 sm:space-x-4">
-          <button className="text-gray-600 hover:text-blue-600 bg-transparent border-none cursor-pointer text-sm sm:text-base px-2 sm:px-0">
+          <a
+            href="/login"
+            className="text-gray-600 hover:text-blue-600 bg-transparent border-none cursor-pointer text-sm sm:text-base px-2 sm:px-0"
+          >
             ログイン
-          </button>
-          <button className="bg-blue-600 text-white font-bold py-2 px-3 sm:px-4 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer border-none text-sm sm:text-base">
+          </a>
+          <a
+            href="/register"
+            className="bg-blue-600 text-white font-bold py-2 px-3 sm:px-4 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer border-none text-sm sm:text-base inline-block text-center"
+          >
             無料で始める
-          </button>
+          </a>
         </div>
       </div>
     </header>
