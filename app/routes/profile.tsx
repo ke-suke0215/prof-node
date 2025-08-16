@@ -1,6 +1,8 @@
 import type { LoaderFunctionArgs } from 'react-router';
 import { useLoaderData } from 'react-router';
+import { hc } from 'hono/client';
 import server from '../../server/index';
+import type { AppType } from '../../server/index';
 
 import { ProfileLayout } from '~/components/profile/profile-layout';
 import { ProfileCard } from '~/components/profile/profile-card';
@@ -10,20 +12,27 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   const { nanoId } = params;
 
   try {
-    // 同一Worker内でのHono内部ディスパッチ（HTTPではない）
-    const request = new Request(`http://internal/api/profile/${nanoId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    // Hono RPCクライアントをカスタムfetchで作成
+    // server.fetch()を使って内部ディスパッチを行う
+    const customFetch = (input: RequestInfo | URL, init?: RequestInit) => {
+      const request = new Request(input, init);
+      return server.fetch(
+        request,
+        context.cloudflare.env,
+        context.cloudflare.ctx
+      );
+    };
+
+    // カスタムfetchを使ったHono RPCクライアント
+    const apiClient = hc<AppType>('http://internal', {
+      fetch: customFetch,
     });
 
-    // Honoサーバーの内部呼び出し（ネットワークを経由しない）
-    const response = await server.fetch(
-      request,
-      context.cloudflare.env,
-      context.cloudflare.ctx
-    );
+    // 型安全なRPC呼び出し
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const response = await (apiClient as any).api.profile[':id'].$get({
+      param: { id: nanoId },
+    });
 
     if (!response.ok) {
       if (response.status === 404) {
@@ -34,8 +43,7 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
       });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const data = (await response.json()) as { profile: any };
+    const data = await response.json();
     return { profile: data.profile };
   } catch (error) {
     if (error instanceof Response) {
@@ -45,7 +53,6 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
     throw new Response('Internal server error', { status: 500 });
   }
 };
-
 export default function ProfilePage() {
   const { profile } = useLoaderData<typeof loader>();
 
