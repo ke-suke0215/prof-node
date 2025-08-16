@@ -16,19 +16,13 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
+        
+      - uses: ./.github/actions/setup-node-cache
+      
       - name: Cache node_modules
         uses: actions/cache@v3
         with:
@@ -37,125 +31,77 @@ jobs:
 
   typecheck:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: setup
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Restore node_modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-
-      - name: Install dependencies
-        run: npm ci
+        
+      - uses: ./.github/actions/setup-node-cache
 
       - name: Run TypeScript type check
         run: npm run typecheck
 
   lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: setup
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Restore node_modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-
-      - name: Install dependencies
-        run: npm ci
+        
+      - uses: ./.github/actions/setup-node-cache
 
       - name: Run ESLint
         run: npm run lint
 
   format-check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: setup
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Restore node_modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-
-      - name: Install dependencies
-        run: npm ci
+        
+      - uses: ./.github/actions/setup-node-cache
 
       - name: Check Prettier formatting
         run: npm run format:check
 
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: setup
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Restore node_modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-
-      - name: Install dependencies
-        run: npm ci
+        
+      - uses: ./.github/actions/setup-node-cache
 
       - name: Run unit tests
         run: npm test
 
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: [typecheck, lint, format-check, test]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Restore node_modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-
-      - name: Install dependencies
-        run: npm ci
+        
+      - uses: ./.github/actions/setup-node-cache
 
       - name: Build project
         run: npm run build
+
+  # 各ジョブの実行時間をタイムライン形式で表示する
+  timeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [setup, typecheck, lint, format-check, test, build]
+    if: always()
+    permissions:
+      actions: read
+
+    steps:
+      - uses: Kesin11/actions-timeline@v2
