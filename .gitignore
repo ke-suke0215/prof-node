@@ -18,6 +18,11 @@ supabase/.temp/
 .env*
 !.env.sample
 
+# E2E Tests
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
 # Other
 .vscode/
 .idea/
