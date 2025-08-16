@@ -1,34 +1,50 @@
 import type { LoaderFunctionArgs } from 'react-router';
 import { useLoaderData } from 'react-router';
+import { hc } from 'hono/client';
+import server from '../../server/index';
+import type { AppType } from '../../server/index';
 
 import { ProfileLayout } from '~/components/profile/profile-layout';
 import { ProfileCard } from '~/components/profile/profile-card';
 import { ErrorPage } from '~/components/profile/error-page';
 
-export const loader = async ({ params, request }: LoaderFunctionArgs) => {
+export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   const { nanoId } = params;
 
   try {
-    // Hono RPCクライアントを使用してAPIコール
-    const url = new URL(request.url);
-    const { createApiClient } = await import('~/lib/api');
+    // Hono RPCクライアントをカスタムfetchで作成
+    // server.fetch()を使って内部ディスパッチを行う
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const client: any = createApiClient(url.origin);
+    const customFetch = (input: string | URL | Request, init?: any) => {
+      const request = new Request(input, init);
+      return server.fetch(
+        request,
+        context.cloudflare.env,
+        context.cloudflare.ctx
+      );
+    };
 
-    const res = await client.api.profile[':id'].$get({
-      param: { id: nanoId as string },
+    // カスタムfetchを使ったHono RPCクライアント
+    const apiClient = hc<AppType>('http://internal', {
+      fetch: customFetch,
     });
 
-    if (!res.ok) {
-      if (res.status === 404) {
+    // 型安全なRPC呼び出し
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const response = await (apiClient as any).api.profile[':id'].$get({
+      param: { id: nanoId },
+    });
+
+    if (!response.ok) {
+      if (response.status === 404) {
         throw new Response('Profile not found', { status: 404 });
       }
       throw new Response('Failed to fetch profile', {
-        status: res.status,
+        status: response.status,
       });
     }
 
-    const data = await res.json();
+    const data = await response.json();
     return { profile: data.profile };
   } catch (error) {
     if (error instanceof Response) {
@@ -38,7 +54,6 @@ export const loader = async ({ params, request }: LoaderFunctionArgs) => {
     throw new Response('Internal server error', { status: 500 });
   }
 };
-
 export default function ProfilePage() {
   const { profile } = useLoaderData<typeof loader>();
 
