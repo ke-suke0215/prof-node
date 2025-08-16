@@ -70,6 +70,48 @@ Fix code formatting:
 npm run format
 ```
 
+## Local CI Testing
+
+Test GitHub Actions workflows locally using [act](https://github.com/nektos/act):
+
+### Prerequisites
+
+- Docker installed and running
+- act installed (via Homebrew: `brew install act`)
+
+### Usage
+
+List available workflows and jobs:
+```bash
+act --list
+```
+
+Run specific CI jobs:
+```bash
+# Run linting checks
+act --job lint
+
+# Run type checking
+act --job typecheck
+
+# Run unit tests
+act --job test
+
+# Run formatting checks
+act --job format-check
+```
+
+Dry run (preview without execution):
+```bash
+act --dryrun
+```
+
+### Configuration
+
+The project includes `.actrc` configuration file with optimized settings for Apple M-series chips and performance improvements.
+
+**Note**: E2E tests (`e2e-tests` job) have heavy dependencies and long execution times, so individual job execution is recommended for local testing.
+
 ## Deployment
 
 Deploy to Cloudflare Workers:
