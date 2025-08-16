@@ -159,3 +159,15 @@ jobs:
 
       - name: Build project
         run: npm run build
+
+  # 各ジョブの実行時間をタイムライン形式で表示する
+  timeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [setup, typecheck, lint, format-check, test, build]
+    if: always()
+    permissions:
+      actions: read
+
+    steps:
+      - uses: Kesin11/actions-timeline@v2
