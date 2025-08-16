@@ -11,7 +11,7 @@ on:
       - 'eslint.config.js'
       - 'vite.config.ts'
       - 'vitest.config.ts'
-      - '.github/workflows/lint-and-format.yml'
+      - '.github/workflows/ci-code-quality-and-tests.yml'
 
 jobs:
   lint-and-format:
