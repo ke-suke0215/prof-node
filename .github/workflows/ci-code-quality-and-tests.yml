@@ -94,6 +94,9 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
+      - name: Build project for E2E tests
+        run: npm run build
+
       - name: Run E2E tests
         run: npm run e2e
 
@@ -107,24 +110,11 @@ jobs:
             playwright-report/
           retention-days: 7
 
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    needs: [typecheck, lint, format-check, test, e2e-tests]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - uses: ./.github/actions/setup-node-cache
-
-      - name: Build project
-        run: npm run build
-
   # 各ジョブの実行時間をタイムライン形式で表示する
   timeline:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: [setup, typecheck, lint, format-check, test, e2e-tests, build]
+    needs: [setup, typecheck, lint, format-check, test, e2e-tests]
     if: always()
     permissions:
       actions: read
