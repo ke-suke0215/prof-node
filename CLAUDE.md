@@ -91,6 +91,21 @@ Dev Container で git push 等を使用するための設定済み：
 
 - `npm run cf-typegen` - Cloudflare Workers 用の型定義を生成
 
+### ローカルCI実行（act）
+
+GitHub Actionsワークフローをローカルで実行するため、[act](https://github.com/nektos/act)を導入済み。
+
+**基本的な使用方法**:
+- `act --list` - 利用可能なワークフローとジョブを表示
+- `act --job lint` - lintジョブのみを実行
+- `act --job typecheck` - typecheckジョブのみを実行
+- `act --job test` - testジョブのみを実行
+- `act --dryrun` - 実際に実行せずに実行計画を表示
+
+**設定ファイル**: `.actrc` でApple M-seriesチップ対応とパフォーマンス最適化設定済み
+
+**注意**: E2Eテストジョブ（`e2e-tests`）は依存関係が多く実行時間が長いため、ローカルでは個別のジョブ単位での実行を推奨
+
 **重要**: `npm run dev` は使用しない。React Router v7 + hono-react-router-adapter との組み合わせで、Viteモジュールランナーエラー（"invoke was called before connect"）が発生するため、`npx wrangler dev` を使用する。
 
 ## アーキテクチャ概要
