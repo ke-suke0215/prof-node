@@ -1,6 +1,10 @@
 import type { LoaderFunctionArgs } from 'react-router';
 import { useLoaderData } from 'react-router';
-import { nanoIdSchema, profileSchema, type ProfileData } from '../../server/schemas/profile';
+import {
+  nanoIdSchema,
+  profileSchema,
+  type ProfileData,
+} from '../../server/schemas/profile';
 
 import { ProfileLayout } from '~/components/profile/profile-layout';
 import { ProfileCard } from '~/components/profile/profile-card';
