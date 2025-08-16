@@ -12,17 +12,6 @@ on:
       - 'vite.config.ts'
       - 'vitest.config.ts'
       - '.github/workflows/lint-and-format.yml'
-  pull_request:
-    paths:
-      - 'app/**'
-      - 'server/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'tsconfig.json'
-      - 'eslint.config.js'
-      - 'vite.config.ts'
-      - 'vitest.config.ts'
-      - '.github/workflows/lint-and-format.yml'
 
 jobs:
   lint-and-format:
