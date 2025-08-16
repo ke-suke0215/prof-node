@@ -12,7 +12,7 @@ export const loader = async ({ params, request }: LoaderFunctionArgs) => {
     // Hono RPCクライアントを使用してAPIコール
     const url = new URL(request.url);
     const { createApiClient } = await import('~/lib/api');
-    const client = createApiClient(url.origin) as any;
+    const client = createApiClient(url.origin);
 
     const res = await client.api.profile[':id'].$get({
       param: { id: nanoId as string },

@@ -1,13 +1,16 @@
-name: Lint and Format Check
+name: CI - Code Quality and Tests
 
 on:
   push:
     paths:
       - 'app/**'
+      - 'server/**'
       - 'package.json'
       - 'package-lock.json'
       - 'tsconfig.json'
       - 'eslint.config.js'
+      - 'vite.config.ts'
+      - 'vitest.config.ts'
       - '.github/workflows/lint-and-format.yml'
 
 jobs:
@@ -35,3 +38,9 @@ jobs:
 
       - name: Check Prettier formatting
         run: npm run format:check
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Build project
+        run: npm run build
