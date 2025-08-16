@@ -19,12 +19,19 @@ const buttonVariants = cva(
           'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
+        primary:
+          'bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500',
+        oauth:
+          'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2',
       },
       size: {
         default: 'h-9 px-4 py-2',
         sm: 'h-8 rounded-md px-3 text-xs',
         lg: 'h-10 rounded-md px-8',
         icon: 'h-9 w-9',
+        auth: 'w-full py-2.5 px-3 text-xs sm:px-4 sm:py-3 sm:text-sm rounded-lg',
+        'auth-submit':
+          'w-full py-2.5 px-4 text-sm sm:py-3 sm:text-base rounded-lg',
       },
     },
     defaultVariants: {

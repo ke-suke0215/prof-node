@@ -7,7 +7,7 @@ A web business card service for engineers. Share your profile, social links, and
 - Digital business card with customizable profile
 - Social media link integration (GitHub, Twitter, LinkedIn, etc.)
 - Mobile-first responsive design
-- Built with React Router v7 + Cloudflare Workers
+- Built with React Router v7 + Hono + Cloudflare Workers
 
 ## Development
 
@@ -25,10 +25,12 @@ npm install
 ### Development Server
 
 ```bash
-npm run dev
+npx wrangler dev
 ```
 
-Visit `http://localhost:5173` to view the application.
+Visit `http://localhost:8787` to view the application.
+
+**Note**: Use `wrangler dev` instead of `npm run dev` due to compatibility issues between React Router v7 and hono-react-router-adapter in Vite development mode.
 
 ### Building
 
@@ -68,6 +70,48 @@ Fix code formatting:
 npm run format
 ```
 
+## Local CI Testing
+
+Test GitHub Actions workflows locally using [act](https://github.com/nektos/act):
+
+### Prerequisites
+
+- Docker installed and running
+- act installed (via Homebrew: `brew install act`)
+
+### Usage
+
+List available workflows and jobs:
+```bash
+act --list
+```
+
+Run specific CI jobs:
+```bash
+# Run linting checks
+act --job lint
+
+# Run type checking
+act --job typecheck
+
+# Run unit tests
+act --job test
+
+# Run formatting checks
+act --job format-check
+```
+
+Dry run (preview without execution):
+```bash
+act --dryrun
+```
+
+### Configuration
+
+The project includes `.actrc` configuration file with optimized settings for Apple M-series chips and performance improvements.
+
+**Note**: E2E tests (`e2e-tests` job) have heavy dependencies and long execution times, so individual job execution is recommended for local testing.
+
 ## Deployment
 
 Deploy to Cloudflare Workers:
@@ -78,6 +122,8 @@ npm run deploy
 ## Tech Stack
 
 - **Frontend**: React 19, React Router v7
+- **Backend**: Hono (Web Framework)
+- **Integration**: hono-react-router-adapter
 - **Styling**: TailwindCSS
 - **Runtime**: Cloudflare Workers
 - **Build Tool**: Vite

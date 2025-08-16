@@ -17,7 +17,7 @@ export function OtherLinks({ links }: OtherLinksProps) {
       <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider text-center mb-4">
         Other Links
       </h2>
-      <div className="space-y-3 px-4">
+      <div className="space-y-3">
         {links.map((link, index) => (
           <a
             key={index}

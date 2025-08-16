@@ -82,10 +82,12 @@ export function ContactSection({ email }: ContactSectionProps) {
   };
 
   return (
-    <div className="mb-8 px-4">
+    <div className="mb-8">
       <div className="flex items-center bg-gray-100/70 border border-gray-200/80 rounded-lg p-3">
         <MailIcon />
-        <span className="text-gray-700 text-sm flex-1 ml-3">{email}</span>
+        <span className="text-gray-700 text-sm flex-1 ml-3 truncate">
+          {email}
+        </span>
         <Button
           variant="ghost"
           size="icon"

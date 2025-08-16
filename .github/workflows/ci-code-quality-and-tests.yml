@@ -1,0 +1,123 @@
+name: CI - Code Quality and Tests
+
+on:
+  push:
+    paths:
+      - 'app/**'
+      - 'server/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
+      - 'eslint.config.js'
+      - 'vite.config.ts'
+      - 'vitest.config.ts'
+      - '.github/workflows/ci-code-quality-and-tests.yml'
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - uses: ./.github/actions/setup-node-cache
+      
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+  typecheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: setup
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - uses: ./.github/actions/setup-node-cache
+
+      - name: Run TypeScript type check
+        run: npm run typecheck
+
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: setup
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - uses: ./.github/actions/setup-node-cache
+
+      - name: Run ESLint
+        run: npm run lint
+
+  format-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: setup
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - uses: ./.github/actions/setup-node-cache
+
+      - name: Check Prettier formatting
+        run: npm run format:check
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: setup
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - uses: ./.github/actions/setup-node-cache
+
+      - name: Run unit tests
+        run: npm test
+
+  e2e-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: setup
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - uses: ./.github/actions/setup-node-cache
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build project for E2E tests
+        run: npm run build
+
+      - name: Run E2E tests
+        run: npm run e2e
+
+      - name: Upload E2E test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+
+  # 各ジョブの実行時間をタイムライン形式で表示する
+  timeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [setup, typecheck, lint, format-check, test, e2e-tests]
+    if: always()
+    permissions:
+      actions: read
+
+    steps:
+      - uses: Kesin11/actions-timeline@v2

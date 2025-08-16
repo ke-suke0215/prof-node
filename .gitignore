@@ -11,9 +11,17 @@
 .wrangler
 .dev.vars*
 
+# Supabase
+supabase/.temp/
+
 # Environment files
 .env*
 !.env.sample
+
+# E2E Tests
+/test-results/
+/playwright-report/
+/playwright/.cache/
 
 # Other
 .vscode/

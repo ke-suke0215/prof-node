@@ -35,6 +35,9 @@ export default [
         HTMLDivElement: 'readonly',
         Element: 'readonly',
         setTimeout: 'readonly',
+        URL: 'readonly',
+        fetch: 'readonly',
+        process: 'readonly',
       },
     },
     plugins: {

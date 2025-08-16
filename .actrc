@@ -1,0 +1,9 @@
+# act設定ファイル
+# Apple M-seriesチップ対応
+--container-architecture linux/amd64
+
+# プラットフォーム指定（軽量化）
+-P ubuntu-latest=catthehacker/ubuntu:act-latest
+
+# 詳細ログ出力を抑制
+--quiet

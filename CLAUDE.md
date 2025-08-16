@@ -76,7 +76,7 @@ Dev Container で git push 等を使用するための設定済み：
 
 ### 基本的な開発コマンド
 
-- `npm run dev` - 開発サーバーを起動（HMR 付き、http://localhost:5173 で利用可能）
+- `npx wrangler dev` - **推奨開発サーバー**（Hono統合環境、http://localhost:8787 で利用可能）
 - `npm run build` - プロダクション用ビルドを作成
 - `npm run preview` - プロダクションビルドをローカルでプレビュー
 - `npm run typecheck` - TypeScript の型チェックを実行（Cloudflare 型定義生成、React Router 型生成、TypeScript コンパイラによるチェックを含む）
@@ -91,13 +91,32 @@ Dev Container で git push 等を使用するための設定済み：
 
 - `npm run cf-typegen` - Cloudflare Workers 用の型定義を生成
 
+### ローカルCI実行（act）
+
+GitHub Actionsワークフローをローカルで実行するため、[act](https://github.com/nektos/act)を導入済み。
+
+**基本的な使用方法**:
+- `act --list` - 利用可能なワークフローとジョブを表示
+- `act --job lint` - lintジョブのみを実行
+- `act --job typecheck` - typecheckジョブのみを実行
+- `act --job test` - testジョブのみを実行
+- `act --dryrun` - 実際に実行せずに実行計画を表示
+
+**設定ファイル**: `.actrc` でApple M-seriesチップ対応とパフォーマンス最適化設定済み
+
+**注意**: E2Eテストジョブ（`e2e-tests`）は依存関係が多く実行時間が長いため、ローカルでは個別のジョブ単位での実行を推奨
+
+**重要**: `npm run dev` は使用しない。React Router v7 + hono-react-router-adapter との組み合わせで、Viteモジュールランナーエラー（"invoke was called before connect"）が発生するため、`npx wrangler dev` を使用する。
+
 ## アーキテクチャ概要
 
-このプロジェクトは**React Router v7 + Cloudflare Workers**を使用したフルスタック React アプリケーションです。
+このプロジェクトは**React Router v7 + Hono + Cloudflare Workers**を使用したフルスタック React アプリケーションです。
 
 ### 主要技術スタック
 
 - **React Router v7** - ルーティングと SSR
+- **Hono** - WebフレームワークとAPI開発
+- **hono-react-router-adapter** - HonoとReact Router v7の統合
 - **Cloudflare Workers** - エッジでのサーバーサイド実行
 - **Vite** - ビルドツール
 - **TailwindCSS** - スタイリング
@@ -107,8 +126,13 @@ Dev Container で git push 等を使用するための設定済み：
 
 - `app/` - メインの React アプリケーションコード
   - `routes/` - ページコンポーネント（React Router のファイルベースルーティング）
+  - `lib/` - 共通ライブラリ（Hono RPCクライアント等）
   - `root.tsx` - アプリケーションのルートレイアウト
   - `routes.ts` - ルート設定
+- `server/` - Hono サーバーコード
+  - `index.ts` - Hono アプリケーションのメインエントリーポイント
+  - `routes/` - API ルート定義
+  - `__tests__/` - サーバーサイドのユニットテスト
 - `workers/` - Cloudflare Workers 用のエントリーポイント
 - `public/` - 静的アセット
 - `docs/` - プロジェクト関連ドキュメント
@@ -119,22 +143,27 @@ Dev Container で git push 等を使用するための設定済み：
 ### 重要な設定ファイル
 
 - `react-router.config.ts` - React Router の設定（SSR 有効化）
-- `vite.config.ts` - ビルド設定（Cloudflare、TailwindCSS、React Router プラグイン）
+- `vite.config.ts` - ビルド設定（hono-react-router-adapter、Cloudflare、TailwindCSS、React Router プラグイン）
 - `wrangler.jsonc` - Cloudflare Workers 設定
+- `server/index.ts` - Hono アプリケーション設定（CORS、API ルート）
 - `tsconfig.json` - TypeScript 設定
 
 ### アプリケーションアーキテクチャ
 
 1. **SSR アーキテクチャ**: サーバーサイドレンダリングが有効で、初期 HTML 生成とハイドレーションを行う
-2. **エッジファースト**: Cloudflare Workers でグローバルエッジネットワーク上で実行
-3. **型安全性**: TypeScript と React Router の型生成により、ルートとローダーの型安全性を確保
-4. **モダンな React**: React 19 と React Router v7 の最新機能を活用
+2. **Hono統合**: hono-react-router-adapterによりHonoとReact Router v7が統合された環境
+3. **型安全なAPI**: Hono RPCクライアントにより、サーバーとクライアント間の型安全性を確保
+4. **エッジファースト**: Cloudflare Workers でグローバルエッジネットワーク上で実行
+5. **型安全性**: TypeScript と React Router の型生成により、ルートとローダーの型安全性を確保
+6. **モダンな React**: React 19 と React Router v7 の最新機能を活用
 
 ### 開発時の注意点
 
+- **開発サーバーは `npx wrangler dev` を使用**（localhost:8787）
 - 型チェックは`npm run typecheck`で実行（Cloudflare 型定義と React Router 型定義の生成を含む）
-- 開発時は localhost:5173 で実行されるが、実際のデプロイ先は Cloudflare Workers
 - `workers/app.ts`が Cloudflare Workers 用のエントリーポイント
+- `server/index.ts`が Hono アプリケーションのメインエントリーポイント
+- API開発時は `server/routes/` にルート定義を追加し、ユニットテストも併せて実装
 - **認証が必要な画面への未ログイン時のアクセスは `/login` にリダイレクト**
 - **ユーザー識別子には nano ID を使用**（公開 URL: `/{nanoid}` 形式）
 - ユニットテストをカバレッジ高く実装すること
