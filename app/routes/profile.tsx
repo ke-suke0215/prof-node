@@ -1,5 +1,7 @@
 import type { LoaderFunctionArgs } from 'react-router';
 import { useLoaderData } from 'react-router';
+import { hc } from 'hono/client';
+import type { AppType } from '../../server/index';
 
 import { ProfileLayout } from '~/components/profile/profile-layout';
 import { ProfileCard } from '~/components/profile/profile-card';
@@ -11,11 +13,11 @@ export const loader = async ({ params, request }: LoaderFunctionArgs) => {
   try {
     // Hono RPCクライアントを使用してAPIコール
     const url = new URL(request.url);
-    const { createApiClient } = await import('~/lib/api');
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const client: any = createApiClient(url.origin);
+    // 静的インポートに変更（Cloudflare Workers環境での互換性のため）
+    const client = hc<AppType>(url.origin);
 
-    const res = await client.api.profile[':id'].$get({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const res = await (client as any).api.profile[':id'].$get({
       param: { id: nanoId as string },
     });
 
