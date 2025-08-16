@@ -81,24 +81,40 @@ jobs:
       - name: Run unit tests
         run: npm test
 
-  build:
+  e2e-tests:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    needs: [typecheck, lint, format-check, test]
+    needs: setup
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         
       - uses: ./.github/actions/setup-node-cache
 
-      - name: Build project
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build project for E2E tests
         run: npm run build
+
+      - name: Run E2E tests
+        run: npm run e2e
+
+      - name: Upload E2E test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
 
   # 各ジョブの実行時間をタイムライン形式で表示する
   timeline:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: [setup, typecheck, lint, format-check, test, build]
+    needs: [setup, typecheck, lint, format-check, test, e2e-tests]
     if: always()
     permissions:
       actions: read
