@@ -14,7 +14,8 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   try {
     // Hono RPCクライアントをカスタムfetchで作成
     // server.fetch()を使って内部ディスパッチを行う
-    const customFetch = (input: RequestInfo | URL, init?: RequestInit) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const customFetch = (input: string | URL | Request, init?: any) => {
       const request = new Request(input, init);
       return server.fetch(
         request,
