@@ -7,7 +7,7 @@ A web business card service for engineers. Share your profile, social links, and
 - Digital business card with customizable profile
 - Social media link integration (GitHub, Twitter, LinkedIn, etc.)
 - Mobile-first responsive design
-- Built with React Router v7 + Cloudflare Workers
+- Built with React Router v7 + Hono + Cloudflare Workers
 
 ## Development
 
@@ -25,10 +25,12 @@ npm install
 ### Development Server
 
 ```bash
-npm run dev
+npx wrangler dev
 ```
 
-Visit `http://localhost:5173` to view the application.
+Visit `http://localhost:8787` to view the application.
+
+**Note**: Use `wrangler dev` instead of `npm run dev` due to compatibility issues between React Router v7 and hono-react-router-adapter in Vite development mode.
 
 ### Building
 
@@ -78,6 +80,8 @@ npm run deploy
 ## Tech Stack
 
 - **Frontend**: React 19, React Router v7
+- **Backend**: Hono (Web Framework)
+- **Integration**: hono-react-router-adapter
 - **Styling**: TailwindCSS
 - **Runtime**: Cloudflare Workers
 - **Build Tool**: Vite
