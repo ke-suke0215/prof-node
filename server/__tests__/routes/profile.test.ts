@@ -1,5 +1,23 @@
-import { describe, it, expect } from 'vitest';
-import profileRoutes from '../routes/profile';
+import { describe, it, expect, vi } from 'vitest';
+import profileRoutes from '../../routes/profile';
+
+// ProfileServiceのモック
+vi.mock('../../services/profile.service', () => ({
+  ProfileService: vi.fn().mockImplementation(() => ({
+    getProfileByNanoId: vi.fn().mockImplementation((nanoId: string) => {
+      // 既知のnano IDの場合はプロフィール情報を返す、そうでなければnull
+      if (nanoId === 'ZiFx0qtfRoUaZ7PTCNlBA') {
+        return Promise.resolve({
+          id: 'test-uuid',
+          nanoId: 'ZiFx0qtfRoUaZ7PTCNlBA',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        });
+      }
+      return Promise.resolve(null);
+    }),
+  })),
+}));
 
 describe('Profile API', () => {
   describe('GET /profile/:id', () => {

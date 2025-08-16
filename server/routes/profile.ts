@@ -6,8 +6,13 @@ import {
   profileSchema,
   type ProfileData,
 } from '../schemas/profile';
+import { ProfileService } from '../services/profile.service';
 
-const app = new Hono();
+type Env = {
+  DATABASE_URL: string;
+};
+
+const app = new Hono<{ Bindings: Env }>();
 
 // 固定のプロフィールデータ（ZiFx0qtfRoUaZ7PTCNlBA用）
 const FIXED_PROFILE_DATA: ProfileData = {
@@ -37,20 +42,24 @@ const paramSchema = z.object({
 app.get('/profile/:id', zValidator('param', paramSchema), async (c) => {
   try {
     const { id } = c.req.valid('param');
-
-    // 特定のnano IDのみ許可
-    if (id !== 'ZiFx0qtfRoUaZ7PTCNlBA') {
+    
+    // ProfileServiceを使用してDBからプロフィール取得
+    const databaseUrl = c.env?.DATABASE_URL || 'postgresql://postgres:postgres@localhost:54322/postgres';
+    const profileService = new ProfileService(databaseUrl);
+    const profile = await profileService.getProfileByNanoId(id);
+    
+    if (!profile) {
       return c.json({ error: 'Profile not found' }, 404);
     }
 
-    // プロフィールデータの検証
     const validatedProfile = profileSchema.parse(FIXED_PROFILE_DATA);
 
     return c.json({ profile: validatedProfile });
   } catch (error) {
-    console.error('Profile validation error:', error);
+    console.error('Profile error:', error);
     return c.json({ error: 'Internal server error' }, 500);
   }
 });
+
 
 export default app;

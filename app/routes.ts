@@ -4,5 +4,5 @@ export default [
   index('routes/home.tsx'),
   route('login', 'routes/login.tsx'),
   route('register', 'routes/register.tsx'),
-  route(':nanoId', 'routes/profile.tsx'),
+  route('profiles/:nanoId', 'routes/profile.tsx'),
 ] satisfies RouteConfig;

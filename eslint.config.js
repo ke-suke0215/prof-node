@@ -8,7 +8,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 export default [
   js.configs.recommended,
   {
-    files: ['app/**/*.{js,jsx,ts,tsx}'],
+    files: ['app/**/*.{js,jsx,ts,tsx}', 'server/**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       parser: typescriptParser,
       parserOptions: {
@@ -59,6 +59,7 @@ export default [
       ],
       '@typescript-eslint/no-empty-object-type': 'off',
       '@typescript-eslint/no-namespace': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
       'jsx-a11y/anchor-is-valid': [
         'error',
         {
@@ -84,6 +85,7 @@ export default [
       'coverage/**',
       '.react-router/**',
       'worker-configuration.d.ts',
+      'server/db/drizzle.config.ts',
     ],
   },
 ];
