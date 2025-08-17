@@ -27,3 +27,6 @@ supabase/.temp/
 .vscode/
 .idea/
 .claude/
+
+# serena
+.serena/

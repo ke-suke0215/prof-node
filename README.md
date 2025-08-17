@@ -119,10 +119,46 @@ Deploy to Cloudflare Workers:
 npm run deploy
 ```
 
+## Database Migration
+
+This project uses Drizzle ORM for database schema management and Supabase CLI for migration application.
+
+### Prerequisites
+
+- Supabase CLI installed (`npm install -g supabase`)
+- Local Supabase instance running (`supabase start`)
+
+### Migration Workflow
+
+1. **Modify database schema** in `server/db/schema/` files
+2. **Generate migration file** using Drizzle:
+   ```bash
+   npx drizzle-kit generate
+   ```
+3. **Apply migration** using Supabase CLI:
+   ```bash
+   supabase db reset
+   ```
+
+### Migration Files
+
+- **Schema location**: `server/db/schema/*.ts`
+- **Migration output**: `supabase/migrations/`
+- **Configuration**: `drizzle.config.ts`
+
+### Example: Adding a New Table
+
+1. Create schema file in `server/db/schema/new-table.ts`
+2. Export the table in `server/db/schema/index.ts`
+3. Generate migration: `npx drizzle-kit generate`
+4. Apply migration: `supabase db reset`
+
 ## Tech Stack
 
 - **Frontend**: React 19, React Router v7
 - **Backend**: Hono (Web Framework)
+- **Database**: Drizzle ORM + Supabase (PostgreSQL)
+- **Auth**: Supabase Auth
 - **Integration**: hono-react-router-adapter
 - **Styling**: TailwindCSS
 - **Runtime**: Cloudflare Workers
