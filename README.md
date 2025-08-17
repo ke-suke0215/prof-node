@@ -137,7 +137,7 @@ This project uses Drizzle ORM for database schema management and Supabase CLI fo
    ```
 3. **Apply migration** using Supabase CLI:
    ```bash
-   supabase db reset
+   npx supabase db reset
    ```
 
 ### Migration Files
