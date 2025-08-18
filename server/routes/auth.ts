@@ -5,6 +5,7 @@ import { createDb } from '../db';
 import { ProfileService } from '../services/profile.service';
 import { authMiddleware } from '../middleware/auth';
 import type { AuthContext } from '../middleware/auth';
+import { getEnv } from '../lib/env';
 
 const auth = new Hono<AuthContext>();
 
@@ -21,7 +22,7 @@ auth.post('/profile', zValidator('json', createProfileSchema), async (c) => {
   try {
     const { authUuid } = c.req.valid('json');
     
-    const db = createDb(c.env.DATABASE_URL);
+    const db = createDb(getEnv('DATABASE_URL'));
     const profileService = new ProfileService(db);
     
     const created = await profileService.createProfile(authUuid);

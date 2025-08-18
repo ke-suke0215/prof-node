@@ -1,10 +1,14 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
+import { contextStorage } from 'hono/context-storage';
 import profileRoutes from './routes/profile';
 import healthRoutes from './routes/health';
 import authRoutes from './routes/auth';
 
 const app = new Hono();
+
+// contextStorage機能を有効化（環境変数アクセス改善のため）
+app.use(contextStorage());
 
 // CORS設定
 app.use(
