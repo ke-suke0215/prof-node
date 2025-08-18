@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import profileRoutes from './routes/profile';
 import healthRoutes from './routes/health';
+import authRoutes from './routes/auth';
 
 const app = new Hono();
 
@@ -20,6 +21,7 @@ app.use(
 // APIルートの設定
 app.route('/api', profileRoutes);
 app.route('/api', healthRoutes);
+app.route('/api/auth', authRoutes);
 
 // ヘルスチェック用エンドポイント
 app.get('/health', (c) => {
