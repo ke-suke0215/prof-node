@@ -1,5 +1,6 @@
 import { createMiddleware } from 'hono/factory';
 import { createSupabaseClient } from '../lib/supabase';
+import { getEnv } from '../lib/env';
 
 export interface AuthContext {
   Bindings: {
@@ -27,8 +28,8 @@ export const authMiddleware = createMiddleware<AuthContext>(async (c, next) => {
   }
 
   try {
-    const supabaseUrl = c.env.SUPABASE_URL;
-    const supabaseAnonKey = c.env.SUPABASE_ANON_KEY;
+    const supabaseUrl = getEnv('SUPABASE_URL');
+    const supabaseAnonKey = getEnv('SUPABASE_ANON_KEY');
     
     const supabase = createSupabaseClient(supabaseUrl, supabaseAnonKey);
     
